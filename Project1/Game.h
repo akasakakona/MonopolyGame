@@ -4,8 +4,8 @@
 #include<iostream>
 #include"SDL.h"
 #include"SDL_image.h"
-
 #include<string>
+#include"Player.h"
 
 using namespace std;
 
@@ -25,7 +25,8 @@ public:
 
 private:
 
-
+    Player* player1;
+    Player* player2;
     bool isRunning;
     SDL_Window* window;
     SDL_Renderer* renderer;

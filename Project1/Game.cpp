@@ -1,21 +1,26 @@
-#include "Game.h"
+
 #include<iostream>
+#include"TextureManager.h"
+#include "GameObj.h"
+#include "Board.h"
 
-SDL_Texture* playerTex;
+GameObj *player1;
+//SDL_Texture* boardBackGround;
 
+Board* board;
 
 using namespace std;
 
 Game::Game() {}
 
-Game::~Game() {}
+Game::~Game() {/*NEED TO BE IMPLEMENTED*/ }
 
 void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {
     int flags = 0;
 
     if (fullscreen) {
         //change the flag to full screen
-        flags = SDL_WINDOW_FULLSCREEN;
+        flags = SDL_WINDOW_MAXIMIZED;//SDL_WINDOW_FULLSCREEN;
     }
 
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -34,7 +39,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
         //check renderer has been created successfuly
         if (renderer) {
-            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+            SDL_SetRenderDrawColor(renderer, 160, 175, 238, 255);
             cout << "Renderer created successfully" << endl;
         }
 
@@ -46,11 +51,13 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
         isRunning = false;
     }
 
-    SDL_Surface* temp = IMG_Load("images/mario.png");
-    
-    playerTex = SDL_CreateTextureFromSurface(renderer, temp);
+    //boardBackGround = TextureManager::LoadTexture("images/board.jpg", renderer);
 
-    SDL_FreeSurface(temp);
+    //player1 = new GameObj("images/mario.png", renderer, 0,0);
+
+    board = new Board(renderer);
+
+   
 
 }
 
@@ -61,7 +68,7 @@ void Game::handleEvents() {
     //if X is clicked on the window, we will quit the program
     switch (event.type) // check event type
     {
-        //if type is equal to quit then isRunning = false
+    //if type is equal to quit then isRunning = false
     case SDL_QUIT:
         isRunning = false;
         break;
@@ -73,18 +80,31 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
+
+    //player1->update();
+    board->board_update();
     
 }
 
 //render our object onto screen
 void Game::render() {
+    //clear the window so images won't overlap
+    //ORDER MATTERS
     SDL_RenderClear(renderer);
 
+    //render the board
+    //SDL_RenderCopy(renderer, boardBackGround, NULL, NULL);
+
+    board->render_board();
+
+
+
     //add stuff to renderer
-    SDL_RenderCopy(renderer, playerTex, NULL, NULL);
-
-
+    //player1->render();
+    
     SDL_RenderPresent(renderer);
+
+    
 }
 
 void Game::clean() {
