@@ -61,6 +61,12 @@ A strategy class is needed in order to achieve the goal mentioned above. If we d
  >   * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
 ## Class Diagram
  > Include a class diagram(s) for each design pattern and a description of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper OMT notation (as discussed in the course slides). You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description). 
+
+ The AbstractBoardFactory class reads in from the configuration files. Then determines whether it will return a PropertyFactory or ChessPieceFactory. The ChessPieceFactory will be responsible for making ChanceCard, ChestCard, and Player objects. The PropertiesFactory will be responsible for making Jail, Utility, Land, and Railroad classes.
+
+The VisitDecider class is an abstract base class. Classes like VisitJailDecider, VisitRailroadDecider, VisitPropertyDecider, VisitUtilityDecider, VisitChanceDecider, and VisitChestDecider all inherit from the VisitDecider base class. Every class will implement a virtual function called interact() that will take a Player object as an argument and decide how this player object will interact with each different property object.
+
+The Board class handles all the interactions among ChessPiece objects, Property objects, and Player objects.
  
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
