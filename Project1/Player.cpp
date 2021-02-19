@@ -9,6 +9,14 @@ Player::Player(int height, int width, int xpos, int ypos, SDL_Renderer* ren, con
 	this->ypos = ypos;
 	srcRect.h = height;
 	srcRect.w = width;
+	srcRect.x = 0;
+	srcRect.y = 0;
+
+	destRect.x = xpos;
+	destRect.y = ypos;
+	destRect.w = srcRect.w;
+	destRect.h = srcRect.h;
+	
 	renderer = ren;
 	objTexture = TextureManager::LoadTexture(filename, renderer);
 	isJailed = false;
@@ -43,4 +51,17 @@ void Player::remove_property(Property* property){
 	}
 	properties.erase(properties.begin() + index);
 
+}
+
+
+void Player::update(int x , int y) {
+
+	this->destRect.x += x;
+	this->destRect.y += y;
+
+
+}
+
+void Player::render() {
+	SDL_RenderCopy(renderer, objTexture, NULL, &destRect);
 }

@@ -11,7 +11,7 @@
 using namespace std;
 
 class Property;
-class Player {
+class Player{
 
 public:
 	Player(int height, int width, int xpos, int ypos, SDL_Renderer* ren, const char* filename);
@@ -22,7 +22,8 @@ public:
 	void change_money(int);
 	void add_property(Property* property);
 	void remove_property(Property* property);
-
+	void update(int x, int y);
+	void render();
 
 
 

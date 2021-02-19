@@ -6,9 +6,12 @@
 #include"SDL_image.h"
 #include<string>
 #include"Player.h"
+#include "Board.h"
+
 
 using namespace std;
-
+class Button;
+class Mouse;
 class Game {
 public:
     Game();
@@ -27,6 +30,9 @@ private:
 
     Player* player1;
     Player* player2;
+    Board* board;
+    Button* roll_dice;
+    Mouse* mouse;
     bool isRunning;
     SDL_Window* window;
     SDL_Renderer* renderer;

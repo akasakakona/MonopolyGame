@@ -2,18 +2,19 @@
 #include<iostream>
 #include"TextureManager.h"
 #include "GameObj.h"
-#include "Board.h"
-
-GameObj *player1;
-//SDL_Texture* boardBackGround;
-
-Board* board;
+#include"Button.h"
+#include"Mouse.h"
 
 using namespace std;
 
 Game::Game() {}
 
-Game::~Game() {/*NEED TO BE IMPLEMENTED*/ }
+Game::~Game() {
+    delete player1;
+    //need to add player2 destructor
+    delete board;
+    //delete roll_dice;
+}
 
 void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {
     int flags = 0;
@@ -50,13 +51,16 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     else {
         isRunning = false;
     }
+    SDL_ShowCursor(false);
 
-    //boardBackGround = TextureManager::LoadTexture("images/board.jpg", renderer);
-
-    //player1 = new GameObj("images/mario.png", renderer, 0,0);
+    player1 = new Player(20,20,0,0,renderer, "images/mario.png");
 
     board = new Board(renderer);
 
+   roll_dice = new Button(0,0, renderer, "images/roll.png");
+   roll_dice->setXY((796 / 2) - 60, 200);
+
+   mouse = new Mouse(renderer, "images/mouse.png");
    
 
 }
@@ -72,6 +76,11 @@ void Game::handleEvents() {
     case SDL_QUIT:
         isRunning = false;
         break;
+    case SDL_MOUSEBUTTONDOWN:
+        if (event.button.button == SDL_BUTTON_LEFT && roll_dice->get_selected()) {
+            player1->update(66, 0);
+            break;
+        }
 
     default:
         break;
@@ -81,8 +90,9 @@ void Game::handleEvents() {
 
 void Game::update() {
 
-    //player1->update();
+    SDL_GetMouseState(&(mouse->cursor.x),&(mouse->cursor.y));
     board->board_update();
+    roll_dice->checkSelected(mouse);
     
 }
 
@@ -92,15 +102,14 @@ void Game::render() {
     //ORDER MATTERS
     SDL_RenderClear(renderer);
 
-    //render the board
-    //SDL_RenderCopy(renderer, boardBackGround, NULL, NULL);
 
     board->render_board();
-
+    roll_dice->render();
+    mouse->render();
 
 
     //add stuff to renderer
-    //player1->render();
+    player1->render();
     
     SDL_RenderPresent(renderer);
 

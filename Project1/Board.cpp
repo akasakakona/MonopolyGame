@@ -2,7 +2,6 @@
 create a board with 40 object --done
 add property, chest, to the board
 maybe a dice in this class idk
-
 */
 #include<iostream>
 #include<string>
@@ -18,7 +17,7 @@ Board::Board(SDL_Renderer* ren) {
 	renderer = ren;
 
 	ifstream PROPERTY;
-	PROPERTY.open("price_rent_mortage.txt");
+	PROPERTY.open("price_rent_mortgage.txt");
 
 	if (!PROPERTY.is_open()) {
 		cout << "FILE NOT OPEN!!" << endl;
@@ -30,7 +29,7 @@ Board::Board(SDL_Renderer* ren) {
 	//price rent mortage 
 	int price = 0;
 	int rent = 0;
-	int mortage = 0;
+	int mortgage = 0;
 
 	string filename = "images/";
 	//adds 40 building object onto the board
@@ -48,9 +47,9 @@ Board::Board(SDL_Renderer* ren) {
 			if (i != 2 && i != 5 && i != 8) {
 				PROPERTY >> price;
 				PROPERTY >> rent;
-				PROPERTY >> mortage;
+				PROPERTY >> mortgage;
 
-				BoardObj* temp = new Property(100, 66, x, y, renderer, c, price, rent, mortage);
+				BoardObj* temp = new Property(100, 66, x, y, renderer, c, price, rent, mortgage);
 				objects[i] = temp;
 				//cout << i << " " << price << " " << rent << " " << mortage << endl;
 			}
@@ -73,9 +72,9 @@ Board::Board(SDL_Renderer* ren) {
 			if (i != 13 && i != 15 && i != 16 && i != 18) {
 				PROPERTY >> price;
 				PROPERTY >> rent;
-				PROPERTY >> mortage;
+				PROPERTY >> mortgage;
 
-				BoardObj* temp = new Property(66, 100, x, y, renderer, c, price, rent, mortage);
+				BoardObj* temp = new Property(66, 100, x, y, renderer, c, price, rent, mortgage);
 				objects[i] = temp;
 				//cout << i << " " << price << " " << rent << " " << mortage << endl;
 			}
@@ -96,14 +95,14 @@ Board::Board(SDL_Renderer* ren) {
 			string tempString = filename + to_string(i) + ".png";
 			const char* c = tempString.c_str();
 
-			if (i != 22 && i != 24 && i != 25 && i != 27) {
+			if (i != 22 && i != 24 && i != 27) {
 				PROPERTY >> price;
 				PROPERTY >> rent;
-				PROPERTY >> mortage;
+				PROPERTY >> mortgage;
 
-				BoardObj* temp = new Property(100, 66, x, y, renderer, c,price, rent, mortage);
+				BoardObj* temp = new Property(100, 66, x, y, renderer, c,price, rent, mortgage);
 				objects[i] = temp;
-				cout << i << " " << price << " " << rent << " " << mortage << endl;
+				cout << i << " " << price << " " << rent << " " << mortgage << endl;
 			}
 			else {
 				BoardObj* temp = new BoardObj(100, 66, x, y, renderer, c);
@@ -124,9 +123,9 @@ Board::Board(SDL_Renderer* ren) {
 			if (i != 32 && i != 35 && i != 37 ) {
 				PROPERTY >> price;
 				PROPERTY >> rent;
-				PROPERTY >> mortage;
+				PROPERTY >> mortgage;
 
-				BoardObj* temp = new Property(66, 100, x, y, renderer, c, price, rent, mortage);
+				BoardObj* temp = new Property(66, 100, x, y, renderer, c, price, rent, mortgage);
 				objects[i] = temp;
 				//cout <<i<<" "<< price << " " << rent << " " << mortage << endl;
 			}
@@ -138,6 +137,8 @@ Board::Board(SDL_Renderer* ren) {
 		}
 		
 	}
+
+	PROPERTY.close();
 }
 
 Board::~Board() {/*NEED TO BE IMPLEMENTED*/}
