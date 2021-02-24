@@ -13,6 +13,7 @@ Game::~Game() {
     //need to add player2 destructor
     delete board;
     delete roll_dice;
+    delete mouse;
 }
 
 void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {
@@ -56,10 +57,10 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
     board = new Board(renderer);
 
-   roll_dice = new Button(0,0, renderer, "images/roll.png");
-   roll_dice->setXY((796 / 2) - 60, 200);
+    roll_dice = new Button(0,0, renderer, "images/roll.png");
+    roll_dice->setXY((796 / 2) - 60, 200);
 
-   mouse = new Mouse(renderer, "images/mouse.png");
+    mouse = new Mouse(renderer, "images/mouse.png");
    
 
 }

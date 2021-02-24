@@ -25,7 +25,11 @@ Board::Board(SDL_Renderer* ren) {
 	
 }
 
-Board::~Board() {/*NEED TO BE IMPLEMENTED*/}
+Board::~Board() {
+	for (unsigned int i = 0; i < properties.size(); ++i) {
+		delete properties.at(i);
+	}
+}
 
 void Board::board_update() {
 	for (unsigned int i = 0; i < properties.size(); ++i) {
