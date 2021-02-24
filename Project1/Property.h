@@ -3,31 +3,48 @@
 
 
 #include<iostream>
-#include"BoardObj.h"
-//#include"Player.h"
+#include"TextureManager.h"
 
 using namespace std;
 //property card for board
 
 class Player;
 
-class Property : public BoardObj {
-private:
+class Property{
+protected:
+	char attribute;
 	Player* owner;
 	int price;
 	int rent;
 	int mortgage;
+	bool purchasable;
+
+	int xpos = 0;
+	int ypos = 0;
+	int height;
+	int width;
+
+	SDL_Texture* objTexture;
+	SDL_Rect srcRect;
+	SDL_Rect destRect;
+	SDL_Renderer* renderer;
 
 public:
-	Property(int height, int width, int xpos, int ypos, SDL_Renderer* ren, const char* filename, 
-		     int price, int rent, int mortgage);
+	Property(int height, int width, int xpos, int ypos, SDL_Renderer* ren, const char* filename);
 	~Property();
 
-	virtual void set_owner(Player* player) override { this->owner = player; }
-	virtual Player* get_owner() override { return this->owner; }
-	virtual int get_price() override { return this->price; }
-	virtual int get_rent() override { return this->rent; }
-	virtual int get_mortgage() override { return this->mortgage; }
+	void render();
+	void update();
+	SDL_Rect get_Rect() { return destRect; }
+
+	virtual int get_price() = 0;
+	virtual void set_owner(Player*) = 0;
+	virtual Player* get_owner() = 0;
+	virtual int get_rent() = 0;
+	virtual int get_mortgage() = 0;
+	virtual void set_purchasable(bool) = 0;
+	virtual int get_price(int) = 0;
+
 
 };
 

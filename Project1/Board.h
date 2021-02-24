@@ -13,7 +13,7 @@ class Board {
 private:
 	
 	SDL_Renderer* renderer;
-	BoardObj* objects[40];
+	vector<Property*> properties;
 
 public:
 	Board(SDL_Renderer* ren);

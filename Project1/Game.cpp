@@ -1,7 +1,6 @@
 
 #include<iostream>
 #include"TextureManager.h"
-#include "GameObj.h"
 #include"Button.h"
 #include"Mouse.h"
 
@@ -13,7 +12,7 @@ Game::~Game() {
     delete player1;
     //need to add player2 destructor
     delete board;
-    //delete roll_dice;
+    delete roll_dice;
 }
 
 void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {

@@ -24,6 +24,7 @@ public:
 	void remove_property(Property* property);
 	void update(int x, int y);
 	void render();
+	SDL_Rect get_Rect() { return destRect; }
 
 
 

@@ -12,6 +12,7 @@
 using namespace std;
 class Button;
 class Mouse;
+class Board;
 class Game {
 public:
     Game();
