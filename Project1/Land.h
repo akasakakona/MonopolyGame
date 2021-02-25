@@ -8,16 +8,15 @@ using namespace std;
 class Land : public Property {
 public:
 	Land(int height, int width, int xpos, int ypos, SDL_Renderer* ren, const char* imageName,
-		int price, int rent, int mortgage, char attribute) : Property(height, width, xpos, ypos, ren, imageName) {
+		int price, int rent, int mortgage, char attribute, bool purchasable) : Property(height, width, xpos, ypos, ren, imageName) {
 		this->price = price;
 		this->rent = rent;
 		this->mortgage = mortgage;
 		this->attribute = attribute;
-		purchasable = true;
+		this->purchasable = purchasable;
 	}
 	~Land() {
 		delete owner;
-		delete objTexture;
 	}
 	
 	virtual int get_price() {

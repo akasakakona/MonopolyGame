@@ -12,11 +12,18 @@ Property::Property(int height, int width, int xpos, int ypos, SDL_Renderer* ren,
 	this->width = width;
 	this->renderer = ren;
 	objTexture = TextureManager::LoadTexture(filename, renderer);
+
+	owner = nullptr;
+	price = 0;
+	rent = 0;
+	mortgage = 0;
+	purchasable = false;
 }
 
 Property::~Property()
 {
-
+	delete owner;
+	delete objTexture;
 }
 
 void Property::render()

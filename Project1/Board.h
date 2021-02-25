@@ -4,7 +4,6 @@
 #define __BOARD_H
 //initiate the board objects and keep track of them in an array.
 #include<iostream>
-//#include"BoardObj.h"
 #include"Property.h"
 
 using namespace std;
@@ -14,7 +13,6 @@ private:
 	
 	SDL_Renderer* renderer;
 	vector<Property*> properties;
-
 public:
 	Board(SDL_Renderer* ren);
 	~Board();

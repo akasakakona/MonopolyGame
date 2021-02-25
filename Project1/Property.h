@@ -17,17 +17,17 @@ protected:
 	int price;
 	int rent;
 	int mortgage;
-	bool purchasable;
+	bool purchasable = false;
 
-	int xpos = 0;
-	int ypos = 0;
+	int xpos;
+	int ypos;
 	int height;
 	int width;
 
-	SDL_Texture* objTexture;
+	SDL_Texture* objTexture = nullptr;
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
-	SDL_Renderer* renderer;
+	SDL_Renderer* renderer = nullptr;
 
 public:
 	Property(int height, int width, int xpos, int ypos, SDL_Renderer* ren, const char* filename);

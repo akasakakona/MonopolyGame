@@ -6,7 +6,16 @@
 
 using namespace std;
 
-Game::Game() {}
+Game::Game() {
+    player1 = nullptr;
+    player2 = nullptr;
+    board = nullptr;
+    roll_dice = nullptr;
+    mouse = nullptr;
+    isRunning = false;
+    window = nullptr;
+    renderer = nullptr;
+}
 
 Game::~Game() {
     delete player1;
