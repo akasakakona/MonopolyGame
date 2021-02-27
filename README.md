@@ -1,35 +1,8 @@
- > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
- > Prompt text is any lines beginning with "\>"
- > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
 # MONOPLOY
- > Your author list below should include links to all members GitHub (remove existing author).
  
  > Authors: Kaiting Zheng   https://github.com/kaitingzheng
             Ryan Le         https://github.com/ryanle432
             Tangyuan Liang  https://github.com/akasakakona
- 
- > You will be forming a group of **THREE** students and working on an interesting project. A list of proposed project ideas that have been successful in previous quarters is given in the project specifications link on iLearn. You can select an idea from the list and decide which design patterns you will use to implement it. If you want to propose your own original idea, you will have to contact an instructor to discuss the project and obtain written permission before you submit your project proposal. Your project needs to implement two design patterns.The project work should be divided almost equally among team members and each member is expected to work on at least one design pattern (more than one partner may work on a pattern) and some of its test cases. You can of course help each other, but it needs to be clear who will be responsible for which patterns and for which features.
- 
- > ## Expectations
- > * Incorporate **at least two** distinct design patterns. You need to include at least *one* design pattern that we will teach this session:
- >   * Composite, Strategy, Abstract Factory, Visitor, or Decorator
- > * All design patterns need to be linked together (it can't be two distinct projects)
- > * Your project should be implemented in C++. If you wish to choose anoher programming language (e.g. Java, Python), please discuss with your lab TA to obtain permission.
- > * You can incorporate additional technologies/tools but they must be approved (in writing) by the instructor or the TA.
- > * Each member of the group **must** be committing code regularly and make sure their code is correctly attributed to them. We will be checking attributions to determine if there was equal contribution to the project.
-> * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group.
-
-## Project Description
- > Your project description should summarize the project you are proposing. Be sure to include
- > * Why is it important or interesting to you?
- > * What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
- >   * [toolname](link) - Short description
- > * What will be the input/output of your project?
- > * What are the two design patterns you will be using? For each design pattern you must explain in 4-5 sentences:
- >   * Why you picked this pattern and what feature you will implement with it
- >   * What problem you anticipate encountering when implementing your project that you will solve using the design pattern
- >   * Why the chosen design pattern will lead to a good solution to that problem
- > * This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
 
 PROJECT DESCRIPTION
 
@@ -49,18 +22,14 @@ We are choosing the strategy design pattern because throughout the game, we need
 A strategy class is needed in order to achieve the goal mentioned above. If we do not use this design pattern, we will have to define in the player object how to interact with each location object, which will make our code a mess. This design pattern will make our code cleaner. 
 
 
- > ## Phase II
- > In addition to completing the "Class Diagram" section below, you will need to 
- > * Set up your GitHub project board as a Kanban board for the project. It should have columns that map roughly to 
- >   * Backlog, TODO, In progress, In testing, Done
- >   * You can change these or add more if you'd like, but we should be able to identify at least these.
- > * There is no requirement for automation in the project board but feel free to explore those options.
- > * Create an "Epic" (note) for each feature and each design pattern and assign them to the appropriate team member. Place these in the `Backlog` column
- > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
- >   * Create smaller development tasks as issues and assign them to team members. Place these in the `Backlog` column.
- >   * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
-## Class Diagram
- > Include a class diagram(s) for each design pattern and a description of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper OMT notation (as discussed in the course slides). You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description). 
+ The AbstractBoardFactory class reads in from the configuration files. Then determines whether it will return a PropertyFactory or ChessPieceFactory. The ChessPieceFactory will be responsible for making ChanceCard, ChestCard, and Player objects. The PropertiesFactory will be responsible for making Jail, Utility, Land, and Railroad classes.
+
+The VisitDecider class is an abstract base class. Classes like VisitJailDecider, VisitRailroadDecider, VisitPropertyDecider, VisitUtilityDecider, VisitChanceDecider, and VisitChestDecider all inherit from the VisitDecider base class. Every class will implement a virtual function called interact() that will take a Player object as an argument and decide how this player object will interact with each different property object.
+
+Board class will take care of all the interactions between Properties object and ChessPiece object. It hewill also call t
+
+<img src="https://github.com/cs100/final-project-rle026-kzhen027-tlian020/blob/board_for_game/kzhen027/Project1/images/Project%20(1).jpg?raw=true">
+<img src="https://github.com/cs100/final-project-rle026-kzhen027-tlian020/blob/board_for_game/kzhen027/Project1/images/Project.jpg?raw=true">
  
  The AbstractBoardFactory class reads in from the configuration files. Then determines whether it will return a PropertyFactory or ChessPieceFactory. The ChessPieceFactory will be responsible for making ChanceCard, ChestCard, and Player objects. The PropertiesFactory will be responsible for making Jail, Utility, Land, and Railroad classes.
 
