@@ -3,7 +3,7 @@
  > Authors: Kaiting Zheng   https://github.com/kaitingzheng
             Ryan Le         https://github.com/ryanle432
             Tangyuan Liang  https://github.com/akasakakona
- 
+
 PROJECT DESCRIPTION
 
 We chose this project because we like board games, and monopoly seemed like a fun and interesting entry project. 
@@ -22,18 +22,14 @@ We are choosing the strategy design pattern because throughout the game, we need
 A strategy class is needed in order to achieve the goal mentioned above. If we do not use this design pattern, we will have to define in the player object how to interact with each location object, which will make our code a mess. This design pattern will make our code cleaner. 
 
 
- > ## Phase II
- > In addition to completing the "Class Diagram" section below, you will need to 
- > * Set up your GitHub project board as a Kanban board for the project. It should have columns that map roughly to 
- >   * Backlog, TODO, In progress, In testing, Done
- >   * You can change these or add more if you'd like, but we should be able to identify at least these.
- > * There is no requirement for automation in the project board but feel free to explore those options.
- > * Create an "Epic" (note) for each feature and each design pattern and assign them to the appropriate team member. Place these in the `Backlog` column
- > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
- >   * Create smaller development tasks as issues and assign them to team members. Place these in the `Backlog` column.
- >   * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
-## Class Diagram
- > Include a class diagram(s) for each design pattern and a description of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper OMT notation (as discussed in the course slides). You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description). 
+ The AbstractBoardFactory class reads in from the configuration files. Then determines whether it will return a PropertyFactory or ChessPieceFactory. The ChessPieceFactory will be responsible for making ChanceCard, ChestCard, and Player objects. The PropertiesFactory will be responsible for making Jail, Utility, Land, and Railroad classes.
+
+The VisitDecider class is an abstract base class. Classes like VisitJailDecider, VisitRailroadDecider, VisitPropertyDecider, VisitUtilityDecider, VisitChanceDecider, and VisitChestDecider all inherit from the VisitDecider base class. Every class will implement a virtual function called interact() that will take a Player object as an argument and decide how this player object will interact with each different property object.
+
+Board class will take care of all the interactions between Properties object and ChessPiece object. It hewill also call t
+
+<img src="https://github.com/cs100/final-project-rle026-kzhen027-tlian020/blob/board_for_game/kzhen027/Project1/images/Project%20(1).jpg?raw=true">
+<img src="https://github.com/cs100/final-project-rle026-kzhen027-tlian020/blob/board_for_game/kzhen027/Project1/images/Project.jpg?raw=true">
  
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
