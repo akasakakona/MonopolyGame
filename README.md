@@ -1,10 +1,8 @@
-
 # MONOPLOY
  
  > Authors: Kaiting Zheng   https://github.com/kaitingzheng
             Ryan Le         https://github.com/ryanle432
             Tangyuan Liang  https://github.com/akasakakona
- 
 
 PROJECT DESCRIPTION
 
