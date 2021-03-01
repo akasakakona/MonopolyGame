@@ -16,7 +16,7 @@ public:
 		this->purchasable = purchasable;
 	}
 	~Land() {
-		delete owner;
+		SDL_DestroyTexture(objTexture);
 	}
 	
 	virtual int get_price() {

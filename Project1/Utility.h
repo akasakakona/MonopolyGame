@@ -15,8 +15,7 @@ public:
 		purchasable = true;
 	}
 	~Utility() {
-		delete owner;
-		delete objTexture;
+		SDL_DestroyTexture(objTexture);
 	}
 
 	virtual int get_price() {

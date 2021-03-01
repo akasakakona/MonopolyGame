@@ -20,6 +20,7 @@ Board::Board(SDL_Renderer* ren) {
 	renderer = ren;
 	BoardFactory* factory = new PropertyFactory("a_p_r_m_x_y_h_w_ID.txt",renderer);
 	factory->createProperty(properties);
+	delete factory;
 
 
 	

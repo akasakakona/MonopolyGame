@@ -23,6 +23,8 @@ Game::~Game() {
     delete board;
     delete roll_dice;
     delete mouse;
+    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
 }
 
 void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {
@@ -62,7 +64,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     }
     SDL_ShowCursor(false);
 
-    player1 = new Player(20,20,0,0,renderer, "images/mario.png");
+    player1 = new Player(renderer, "images/player1.png");
 
     board = new Board(renderer);
 
@@ -87,7 +89,9 @@ void Game::handleEvents() {
         break;
     case SDL_MOUSEBUTTONDOWN:
         if (event.button.button == SDL_BUTTON_LEFT && roll_dice->get_selected()) {
-            player1->update(66, 0);
+            //int space = roll_dice->roll_dice();
+            //cout << space << endl;
+            player1->update(1);
             break;
         }
 
@@ -114,11 +118,12 @@ void Game::render() {
 
     board->render_board();
     roll_dice->render();
-    mouse->render();
 
 
     //add stuff to renderer
     player1->render();
+
+    mouse->render();
     
     SDL_RenderPresent(renderer);
 
@@ -126,8 +131,6 @@ void Game::render() {
 }
 
 void Game::clean() {
-    SDL_DestroyWindow(window);
-    SDL_DestroyRenderer(renderer);
     SDL_Quit();
     cout << "game cleanerd" << endl;
 }

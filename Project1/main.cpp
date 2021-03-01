@@ -2,6 +2,7 @@
 #include<iostream>
 #include"Game.h"
 
+
 using namespace std;
 int main(int argc, char* argv[]) {
 
@@ -10,6 +11,7 @@ int main(int argc, char* argv[]) {
 
     unsigned int frameStart;
     int frameTime;
+
     
     Game* game = new Game();
 
@@ -34,6 +36,8 @@ int main(int argc, char* argv[]) {
     }
 
     game->clean();
+    delete game;
+
 
     return 0;
 }

@@ -11,6 +11,7 @@ Mouse::Mouse(SDL_Renderer* ren, const char* filename)
 
 Mouse::~Mouse()
 {
+	SDL_DestroyTexture(objTexture);
 }
 
 void Mouse::render()

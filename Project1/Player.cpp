@@ -19,10 +19,12 @@ Player::Player(SDL_Renderer* ren, const char* filename) {
 	renderer = ren;
 	objTexture = TextureManager::LoadTexture(filename, renderer);
 	isJailed = false;
-	money = 200;
+	money = 1500;
 }
 
-Player::~Player() {}
+Player::~Player() {
+	SDL_DestroyTexture(objTexture);
+}
 
 void Player::set_jailed(bool x) {
 	isJailed = x;
@@ -119,7 +121,7 @@ void Player::move() {
 		}
 	}
 	//TESTING 
-	//cout << destRect.x << " " << destRect.y << endl;
+	cout << destRect.x << " " << destRect.y << endl;
 }
 
 
@@ -137,4 +139,10 @@ void Player::update(int spaces) {
 
 void Player::render() {
 	SDL_RenderCopy(renderer, objTexture, NULL, &destRect);
+}
+
+void Player::toJail()
+{
+	destRect.x = 40;
+	destRect.y = 694 + 16;
 }

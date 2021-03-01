@@ -23,7 +23,7 @@ Property::Property(int height, int width, int xpos, int ypos, SDL_Renderer* ren,
 Property::~Property()
 {
 	delete owner;
-	delete objTexture;
+	SDL_DestroyTexture(objTexture);
 }
 
 void Property::render()

@@ -24,6 +24,7 @@ public:
 	void remove_property(Property* property);
 	void update(int spaces);
 	void render();
+	void toJail();
 	SDL_Rect get_Rect() { return destRect; }
 
 
