@@ -4,15 +4,16 @@
 
 #include "BoardFactory.h"
 #include "Land.h"
+#include "Utility.h"
+#include "RailRoad.h"
 #include <fstream>
 
 using namespace std;
 
 class PropertyFactory : public BoardFactory {
 public:
-	PropertyFactory(string filename, SDL_Renderer* ren) {
+	PropertyFactory(string filename) {
 		this->filename = filename;
-		this->renderer = ren;
 	}
 	~PropertyFactory() {};
 
@@ -25,82 +26,59 @@ public:
 		if (!PROPERTY.is_open()) {
 			cout << "FILE NOT OPEN!" << endl;
 		}
+		//what kind of property it is. L = land, U = utility, R = railroad, A = corner
 		char attribute;
+		//price to purchase
 		int price;
+		//price player have to pay after landing on it
 		int rent;
+		//price of property if player wants to sell
 		int mortgage;
-		int xpos;
-		int ypos;
-		int height;
-		int width;
+		//name of the property
+		string name;
+		//ID of each property starting from 0, go sqaure has ID 0
 		int ID;
 		
-		//for (int i = 0; i < 32; ++i) {
 		  while(PROPERTY >> attribute){
-			//PROPERTY >> attribute;
 			if (attribute == 'L') {
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
-				PROPERTY >> xpos;
-				PROPERTY >> ypos;
-				PROPERTY >> height;
-				PROPERTY >> width;
+				PROPERTY >> name;
 				PROPERTY >> ID;
 
-
-				string image = "images/" + to_string(ID) + ".PNG";
-				const char* c = image.c_str();
-
-				Property* temp = new Land(height, width, xpos, ypos, renderer, c, price, rent, mortgage, attribute,true);
+				Property* temp = new Land(price, rent, mortgage, attribute,name,ID);
 				properties.push_back(temp);
 			}
 			else if (attribute == 'U') {
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
-				PROPERTY >> xpos;
-				PROPERTY >> ypos;
-				PROPERTY >> height;
-				PROPERTY >> width;
+				PROPERTY>>name;
 				PROPERTY >> ID;
 
-				string image = "images/" + to_string(ID) + ".PNG";
-				const char* c = image.c_str();
 
-				Property* temp = new Land(height, width, xpos, ypos, renderer, c, price, rent, mortgage, attribute,true);
+				Property* temp = new Utility(price, rent, mortgage, attribute,name,ID);
 				properties.push_back(temp);
 			}
 			else if(attribute == 'R'){
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
-				PROPERTY >> xpos;
-				PROPERTY >> ypos;
-				PROPERTY >> height;
-				PROPERTY >> width;
+				PROPERTY>>name;
 				PROPERTY >> ID;
 
-				string image = "images/" + to_string(ID) + ".PNG";
-				const char* c = image.c_str();
-
-				Property* temp = new Land(height, width, xpos, ypos, renderer, c, price, rent, mortgage, attribute,true);
+				Property* temp = new RailRoad(price, rent, mortgage, attribute,name,ID);
 				properties.push_back(temp);
 			}
 			else {
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
-				PROPERTY >> xpos;
-				PROPERTY >> ypos;
-				PROPERTY >> height;
-				PROPERTY >> width;
+				PROPERTY>>name;
 				PROPERTY >> ID;
 
-				string image = "images/" + to_string(ID) + ".PNG";
-				const char* c = image.c_str();
-
-				Property* temp = new Land(height, width, xpos, ypos, renderer, c, price, rent, mortgage, attribute,false);
+				Property* temp = new Land(price, rent, mortgage, attribute,name,ID);
 				properties.push_back(temp);
 			}
 		}
@@ -113,7 +91,6 @@ public:
 	}
 private:
 	string filename;
-	SDL_Renderer* renderer;
 
 };
 

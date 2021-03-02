@@ -15,34 +15,14 @@ using namespace std;
 
 //create the board by creating 26 building rectangle and 4 corner squares
 //starting with the START square at the bottom right
-Board::Board(SDL_Renderer* ren) {
+Board::Board() {
 	
-	renderer = ren;
-	BoardFactory* factory = new PropertyFactory("a_p_r_m_x_y_h_w_ID.txt",renderer);
+	BoardFactory* factory = new PropertyFactory("price_rent_mortgage");
 	factory->createProperty(properties);
-
-
-	
 }
 
 Board::~Board() {
 	for (unsigned int i = 0; i < properties.size(); ++i) {
 		delete properties.at(i);
 	}
-}
-
-void Board::board_update() {
-	for (unsigned int i = 0; i < properties.size(); ++i) {
-		properties.at(i)->update();
-	}
-
-}
-
-void Board::render_board() {
-
-	for (unsigned int i = 0; i < properties.size(); ++i) {
-		properties.at(i)->render();
-	}
-
-
 }

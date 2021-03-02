@@ -10,17 +10,11 @@ using namespace std;
 
 class Board {
 private:
-	
-	SDL_Renderer* renderer;
 	vector<Property*> properties;
 public:
-	Board(SDL_Renderer* ren);
+	Board();
 	~Board();
 	
-	//BoardObj* get_BoardObj();
-
-	void board_update();
-	void render_board();
 
 };
 #endif //__BOARD_H

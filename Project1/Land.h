@@ -7,17 +7,16 @@ using namespace std;
 
 class Land : public Property {
 public:
-	Land(int height, int width, int xpos, int ypos, SDL_Renderer* ren, const char* imageName,
-		int price, int rent, int mortgage, char attribute, bool purchasable) : Property(height, width, xpos, ypos, ren, imageName) {
+	Land(int price, int rent, int mortgage, char attribute, string name, int ID){
 		this->price = price;
 		this->rent = rent;
 		this->mortgage = mortgage;
 		this->attribute = attribute;
-		this->purchasable = purchasable;
+		this->purchasable = true;
+		this->name = name;
+		this->ID = ID;
 	}
-	~Land() {
-		delete owner;
-	}
+	~Land() {}
 	
 	virtual int get_price() {
 		return this->price;
@@ -28,7 +27,7 @@ public:
 	virtual Player* get_owner() {
 		return owner;
 	}
-	virtual int get_rent() {
+	virtual int get_rent(int dice_roll) {
 		return this->rent;
 	}
 	virtual int get_mortgage() {
@@ -37,9 +36,10 @@ public:
 	virtual void set_purchasable(bool purchasable) {
 		this->purchasable = purchasable;
 	}
-	virtual int get_price(int dice_roll) {
-		return (this->price * dice_roll);
+	virtual string get_name(){
+		return name;
 	}
+
 };
 
 

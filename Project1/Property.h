@@ -3,7 +3,6 @@
 
 
 #include<iostream>
-#include"TextureManager.h"
 
 using namespace std;
 //property card for board
@@ -18,32 +17,19 @@ protected:
 	int rent;
 	int mortgage;
 	bool purchasable = false;
-
-	int xpos;
-	int ypos;
-	int height;
-	int width;
-
-	SDL_Texture* objTexture = nullptr;
-	SDL_Rect srcRect;
-	SDL_Rect destRect;
-	SDL_Renderer* renderer = nullptr;
+	string name;
+	int ID;
 
 public:
-	Property(int height, int width, int xpos, int ypos, SDL_Renderer* ren, const char* filename);
-	~Property();
-
-	void render();
-	void update();
-	SDL_Rect get_Rect() { return destRect; }
+	virtual ~Property() = default;
 
 	virtual int get_price() = 0;
 	virtual void set_owner(Player*) = 0;
 	virtual Player* get_owner() = 0;
-	virtual int get_rent() = 0;
+	virtual int get_rent(int) = 0;
 	virtual int get_mortgage() = 0;
 	virtual void set_purchasable(bool) = 0;
-	virtual int get_price(int) = 0;
+	virtual string get_name() = 0;
 
 
 };
