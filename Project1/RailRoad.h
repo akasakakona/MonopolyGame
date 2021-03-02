@@ -1,4 +1,4 @@
-#pragma once
+
 #ifndef __RAIL_ROAD_H
 #define __RAIL_ROAD_H
 

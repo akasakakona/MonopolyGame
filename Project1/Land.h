@@ -1,4 +1,4 @@
-#pragma once
+
 #ifndef __LAND_H
 #define __LAND_H
 #include<iostream>

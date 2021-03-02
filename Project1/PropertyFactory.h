@@ -1,4 +1,4 @@
-#pragma once
+
 #ifndef __PROPERTY_FACTORY_H
 #define __PROPERTY_FACTORY_H
 

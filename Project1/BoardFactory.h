@@ -1,4 +1,3 @@
-#pragma once
 #ifndef __BOARD_FACTORY_H
 #define __BOARD_FACTORY_H
 
