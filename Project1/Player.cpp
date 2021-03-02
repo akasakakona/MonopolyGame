@@ -1,24 +1,9 @@
 #include<iostream>
 #include"Player.h"
-#include"TextureManager.h"
 #include"Property.h"
 using namespace std;
 
-Player::Player(int height, int width, int xpos, int ypos, SDL_Renderer* ren, const char* filename) {
-	this->xpos = xpos;
-	this->ypos = ypos;
-	srcRect.h = height;
-	srcRect.w = width;
-	srcRect.x = 0;
-	srcRect.y = 0;
-
-	destRect.x = xpos;
-	destRect.y = ypos;
-	destRect.w = srcRect.w;
-	destRect.h = srcRect.h;
-	
-	renderer = ren;
-	objTexture = TextureManager::LoadTexture(filename, renderer);
+Player::Player() {
 	isJailed = false;
 	money = 200;
 }
@@ -51,17 +36,4 @@ void Player::remove_property(Property* property){
 	}
 	properties.erase(properties.begin() + index);
 
-}
-
-
-void Player::update(int x , int y) {
-
-	this->destRect.x += x;
-	this->destRect.y += y;
-
-
-}
-
-void Player::render() {
-	SDL_RenderCopy(renderer, objTexture, NULL, &destRect);
 }
