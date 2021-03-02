@@ -1,2 +1,6 @@
 .vscode/
 /Project1/myProgram
+/Project1/Makefile
+/Project1/cmake_install.cmake
+/Project1/CMakeCache.txt
+/Project1/test.exe
