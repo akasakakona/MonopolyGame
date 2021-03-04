@@ -28,8 +28,8 @@ public:
 	virtual Player* get_owner() = 0;
 	virtual int get_rent(int) = 0;
 	virtual int get_mortgage() = 0;
-	virtual void set_purchasable(bool) = 0;
 	virtual string get_name() = 0;
+	virtual char get_attribute() = 0;
 
 
 };

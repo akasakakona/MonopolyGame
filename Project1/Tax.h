@@ -33,9 +33,6 @@ class Tax : public Property{
 	virtual int get_mortgage() {
 		return this->mortgage;
 	}
-	virtual void set_purchasable(bool purchasable) {
-		this->purchasable = purchasable;
-	}
 	virtual string get_name(){
 		return name;
 	}
