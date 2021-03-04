@@ -38,6 +38,9 @@ public:
 	virtual string get_name(){
 		return name;
 	}
+	virtual char get_attribute(){
+        return this->attribute;
+    }
 };
 
 
