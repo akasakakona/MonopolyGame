@@ -20,12 +20,15 @@ public:
 	void change_money(int);
 	void add_property(Property* property);
 	void remove_property(Property* property);
+	int get_current_position();
+	void change_position(int spaces);
+	void set_position (int pos);
 
 private:
 	vector<Property*> properties;
 	bool isJailed;
 	int money;
-	int xpos, ypos;
+	int current_positon;
 };
 
 #endif //PLAYER_H

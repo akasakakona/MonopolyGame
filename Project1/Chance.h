@@ -1,5 +1,5 @@
 #ifndef __CHANCE_H
-#define __CHACNE_H
+#define __CHANCE_H
 
 #include<iostream>
 #include"Property.h"
@@ -17,7 +17,7 @@ class Chance : public Property{
 		this->ID = ID;
 	}
     ~Chance(){}
-    
+
     virtual int get_price() {
 		return this->price;
 	}
@@ -39,7 +39,10 @@ class Chance : public Property{
     virtual char get_attribute(){
         return this->attribute;
     }
+	virtual bool is_purchasable(){
+		return this->purchasable;
+	}
 };
 
 
-#endif 
+#endif

@@ -5,7 +5,8 @@ using namespace std;
 
 Player::Player() {
 	isJailed = false;
-	money = 200;
+	money = 1500;
+	current_positon = 0;
 }
 
 Player::~Player() {}
@@ -30,10 +31,15 @@ void Player::add_property(Property* property){
 void Player::remove_property(Property* property){
 	int index = 0;
 	for (unsigned int i = 0; i < properties.size(); ++i) {
-		if (property == properties.at(i)) {
+		if (property->get_name() == properties.at(i)->get_name()) {
+			properties.at(i)->set_owner(nullptr);
 			index = i;
 		}
 	}
 	properties.erase(properties.begin() + index);
 
+}
+
+void Player::set_position(int pos){
+	current_positon = pos;
 }

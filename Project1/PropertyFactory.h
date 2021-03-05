@@ -6,6 +6,9 @@
 #include "Land.h"
 #include "Utility.h"
 #include "RailRoad.h"
+#include "Chance.h"
+#include "Chest.h"
+#include "Tax.h"
 #include <fstream>
 
 using namespace std;
@@ -71,7 +74,7 @@ public:
 				Property* temp = new RailRoad(price, rent, mortgage, attribute,name,ID);
 				properties.push_back(temp);
 			}
-			else {
+			else if (attribute == 'A'){
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
@@ -81,6 +84,27 @@ public:
 				Property* temp = new Land(price, rent, mortgage, attribute,name,ID);
 				properties.push_back(temp);
 			}
+			else if(attribute == 'C'){
+				PROPERTY >> price;
+				PROPERTY >> rent;
+				PROPERTY >> mortgage;
+				PROPERTY>>name;
+				PROPERTY >> ID;
+
+				Property* temp = new Chest(price, rent, mortgage, attribute,name,ID);
+				properties.push_back(temp);
+			}
+			else if(attribute == 'B'){
+				PROPERTY >> price;
+				PROPERTY >> rent;
+				PROPERTY >> mortgage;
+				PROPERTY>>name;
+				PROPERTY >> ID;
+
+				Property* temp = new Chance(price, rent, mortgage, attribute,name,ID);
+				properties.push_back(temp);
+			}
+
 		}
 
 		PROPERTY.close();

@@ -41,6 +41,9 @@ public:
 	virtual char get_attribute(){
         return this->attribute;
     }
+	virtual bool is_purchasable(){
+		return this->purchasable;
+	}
 };
 
 
