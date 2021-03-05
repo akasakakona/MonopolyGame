@@ -19,6 +19,7 @@ class ChanceCard : public ChessPiece {
 
 
     private:
+        
 };
 
 #endif //__CHANCECARD_H__
