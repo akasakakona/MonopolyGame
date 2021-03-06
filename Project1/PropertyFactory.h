@@ -9,6 +9,7 @@
 #include "Chance.h"
 #include "Chest.h"
 #include "Tax.h"
+#include "Corner.h"
 #include <fstream>
 
 using namespace std;
@@ -81,7 +82,7 @@ public:
 				PROPERTY>>name;
 				PROPERTY >> ID;
 
-				Property* temp = new Land(price, rent, mortgage, attribute,name,ID);
+				Property* temp = new Corner(price, rent, mortgage, attribute,name,ID);
 				properties.push_back(temp);
 			}
 			else if(attribute == 'C'){

@@ -23,6 +23,7 @@ public:
 	int get_current_position();
 	void change_position(int spaces);
 	void set_position (int pos);
+	int get_money();
 
 private:
 	vector<Property*> properties;

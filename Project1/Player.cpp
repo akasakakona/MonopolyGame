@@ -28,6 +28,7 @@ void Player::add_property(Property* property){
 	properties.push_back(property);
 
 }
+
 void Player::remove_property(Property* property){
 	int index = 0;
 	for (unsigned int i = 0; i < properties.size(); ++i) {
@@ -41,5 +42,28 @@ void Player::remove_property(Property* property){
 }
 
 void Player::set_position(int pos){
+	if(pos > 40){
+		while(pos > 40){
+			pos -= 40;
+		}
+	}
 	current_positon = pos;
+}
+
+void Player::change_position(int spaces){
+	if((current_positon + spaces) > 39){
+		current_positon = (current_positon + spaces) - 40;
+	}
+	else{
+		current_positon += spaces;
+	}
+}
+
+int Player::get_current_position(){
+
+	return current_positon;
+}
+
+int Player::get_money(){
+	return money;
 }
