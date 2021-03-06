@@ -33,11 +33,14 @@ public:
 	virtual int get_mortgage() {
 		return this->mortgage;
 	}
-	virtual void set_purchasable(bool purchasable) {
-		this->purchasable = purchasable;
-	}
 	virtual string get_name(){
 		return name;
+	}
+	virtual char get_attribute(){
+        return this->attribute;
+    }
+	virtual bool is_purchasable(){
+		return this->purchasable;
 	}
 
 };

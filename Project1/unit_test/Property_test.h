@@ -6,6 +6,9 @@
 #include "../Land.h"
 #include "../Utility.h"
 #include "../RailRoad.h"
+#include "../Tax.h"
+#include "../Chest.h"
+
 #include "gtest/gtest.h"
 
 
@@ -39,6 +42,27 @@ TEST(PROPERTYTEST, UtilityName){
 TEST(PROPERTYTEST, RailRoadName){
     Property* property = new RailRoad(5,5,5,'R',"RAILROAD_TEST",0);
     EXPECT_EQ(property->get_name(), "RAILROAD_TEST");
+}
+TEST(PROPERTYTEST, TaxTest){
+    Property* tax = new Tax(200,0,0,'T',"TAX",0);
+    EXPECT_EQ(tax->get_name(), "TAX");
+    EXPECT_EQ(tax->get_owner(), nullptr);
+    EXPECT_EQ(tax->is_purchasable(), false);
+    EXPECT_EQ(tax->get_price(), 200);
+}
+TEST(PROPERTYTEST, ChanceTest){
+    Property* chance = new Chance(200,0,0,'B',"Chance",0);
+    EXPECT_EQ(chance->get_name(), "Chance");
+    EXPECT_EQ(chance->get_owner(), nullptr);
+    EXPECT_EQ(chance->is_purchasable(), false);
+    EXPECT_EQ(chance->get_price(), 200);
+}
+TEST(PROPERTYTEST, ChestTest){
+    Property* chest = new Chance(0,0,0,'C',"Chest",0);
+    EXPECT_EQ(chest->get_name(), "Chest");
+    EXPECT_EQ(chest->get_owner(), nullptr);
+    EXPECT_EQ(chest->is_purchasable(), false);
+    EXPECT_EQ(chest->get_price(), 0);
 }
 
 
