@@ -42,6 +42,10 @@ class Tax : public Property{
 	virtual bool is_purchasable(){
 		return this->purchasable;
 	}
+	virtual void interact(Player* player){
+		cout << "You have been charged with " << this->name << endl;
+		player->change_money(-this->price);
+	}
 };
 
 

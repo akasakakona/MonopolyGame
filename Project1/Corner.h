@@ -40,6 +40,62 @@ public:
 	virtual bool is_purchasable(){
 		return this->purchasable;
 	}
+	virtual void interact(Player* player){
+		//player is at go square
+		if(player->get_current_position() == 0){
+			player->change_money(200);
+		}
+		//player is at go to jail square
+		else if(player->get_current_position() == 30){
+
+			//check if player has a get out of jail card
+			if(player->get_jail_card() > 0){
+				player->change_jail_card(-1);
+			}
+			//player goes to jail
+			else{
+				player->set_position(10);
+				player->set_jailed(true);
+			}
+		}
+		else{
+			//if player is in jail
+			if(player->get_current_position() == 10 && player->get_jailed()){
+				int a = rand() % 6 + 1;
+				int b = rand() % 6 + 1;
+				
+				cout << "You have rolled a " << a << " and a " << b <<endl;
+				if(a == b){
+					cout << "You have rolled a double which means you are free!" << endl;
+					player->set_jailed(false);
+				}
+				else{
+					cout << "You are still in jail since you did not roll a double" << endl;
+					cout << "Do you wish to pay $50 to get out of jail? (yes/no)" << endl;
+
+					string answer;
+					cin >> answer;
+
+					while(answer != "yes" && answer != "no"){
+						cin >> answer;
+					}
+
+					if(answer == "yes"){
+						cout<<"You are free, and is no longer in jail!" << endl;
+						player->change_money(-50);
+						player->set_jailed(false);
+					}
+					else{
+						cout<<"You are still in jail, please wait till next turn"<<endl;
+					}
+
+				} 
+			}
+		}
+
+
+		
+	}
 };
 
 #endif //__CORNER_H

@@ -12,7 +12,7 @@ class Property;
 class Player{
 
 public:
-	Player();
+	Player(bool);
 	~Player();
 
 	void set_jailed(bool);
@@ -26,11 +26,13 @@ public:
 	int get_money();
 	void change_jail_card(int x);
 	int get_jail_card();
+	bool get_is_bot();
 
 private:
 	vector<Property*> properties;
 	bool isJailed;
 	int money;
+	bool is_bot;
 	int current_positon;
 	int get_out_of_jail_card = 0;
 };

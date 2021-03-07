@@ -3,10 +3,11 @@
 #include"Property.h"
 using namespace std;
 
-Player::Player() {
+Player::Player(bool is_bot) {
 	isJailed = false;
 	money = 1500;
 	current_positon = 0;
+	this->is_bot = is_bot;
 }
 
 Player::~Player() {}
@@ -80,4 +81,8 @@ void Player::change_jail_card(int x) {
 
 int Player::get_jail_card() {
 	return this->get_out_of_jail_card;
+}
+
+bool Player::get_is_bot(){
+	return this->is_bot;
 }
