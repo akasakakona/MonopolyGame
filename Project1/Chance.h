@@ -5,6 +5,7 @@
 #include <time.h>
 #include"Property.h"
 #include"Player.h"
+#include"ChessPiece.h"
 using namespace std;
 
 class Chance : public Property{
@@ -117,7 +118,48 @@ class Chance : public Property{
 			currPlayer->change_jail_card(1);
 		}
 		else if (chanceCards.at(randomInt)->getID() == 7) {
+			//Move back 3 spaces
+			cout << "You move back 3 spaces..." << endl;
 			currPlayer->change_position(-3);
+		}
+		else if (chanceCards.at(randomInt)->getID() == 8) {
+			//Go to jail
+			cout << "You've been jailed!" << endl;
+			currPlayer->set_jailed(true);
+		}
+		else if (chanceCards.at(randomInt)->getID() == 9) {
+			//Pay poor tax
+			currPlayer->change_money(-15);
+		}
+		else if (chanceCards.at(randomInt)->getID() == 10) {
+			//Go to Reading Railroad
+			cout << "You move to Reading Railroad..." << endl;
+			if (currPlayer->get_current_position() > 5) {
+				cout << "You pass Go! Collect $200" << endl;
+				currPlayer->change_money(200);
+			}
+			currPlayer->set_position(5);
+		}
+		else if (chanceCards.at(randomInt)->getID() == 11) {
+			//Go to Boardwalk
+			cout << "You move to Boardwalk..." << endl;
+			currPlayer->set_position(39);
+		}
+		else if (chanceCards.at(randomInt)->getID() == 12) {
+			//Chairman of the board
+			currPlayer->change_money(-50);
+		}
+		else if (chanceCards.at(randomInt)->getID() == 13) {
+			//Building and loan matures
+			currPlayer->change_money(150);
+		}
+		else if (chanceCards.at(randomInt)->getID() == 14) {
+			//Crossword comp
+			currPlayer->change_money(100);
+		}
+		else if (chanceCards.at(randomInt)->getID() == 15) {
+			//Win lotto
+			currPlayer->change_money(100);
 		}
 	}
 
