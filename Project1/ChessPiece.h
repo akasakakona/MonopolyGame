@@ -10,7 +10,7 @@ class ChessPiece {
         virtual ~ChessPiece();
         virtual string getName() = 0;
         virtual int getID() = 0;
-    private:
+    protected:
         string name;
         int id;
 };
