@@ -63,13 +63,14 @@ public:
 					int buy = rand() % 2;
 					//buy the property
 					if(buy == 0){
-						cout<<"You have bought " << this->name << endl;
+						cout<<"You have bought " << this->name << " for $"<<this->price << endl;
 						
 						//subtract money from player
 						player->change_money(-this->price);
-						this->owner = owner;
+						this->owner = player;
 
 						player->add_property(this);
+						cout<< "You now have $" << player->get_money()<<endl;						
 					}
 					else{
 						cout<<"You have choosen not to buy "<< this->name << endl;												
@@ -88,18 +89,20 @@ public:
 					cin >> answer;
 
 					while(answer != "yes" && answer != "no"){
+						cout << "Please enter yes or no" << endl;
 						cin >> answer;
 					}
 
 					//player buys the property
 					if(answer == "yes"){
-						cout<<"You have bought " << this->name << endl;
+						cout<<"You have bought " << this->name << " for $"<<this->price << endl;
 						
 						//subtract money from player
 						player->change_money(-this->price);
 						this->owner = owner;
 
 						player->add_property(this);
+						cout<< "You now have $" << player->get_money()<<endl;						
 					}
 					//player does not buy the property
 					else{

@@ -2,6 +2,11 @@
 #define __CORNER_H
 
 #include"Property.h"
+#include<string>
+#include<iostream>
+#include "Player.h"
+#include <time.h>
+using namespace std;
 
 class Corner : public Property {
 public:

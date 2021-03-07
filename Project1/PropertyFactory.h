@@ -10,6 +10,9 @@
 #include "Chest.h"
 #include "Tax.h"
 #include "Corner.h"
+#include "ChessPiece.h"
+#include "ChanceCard.h"
+#include "ChestCard.h"
 #include <fstream>
 
 using namespace std;
@@ -23,6 +26,8 @@ public:
 	~PropertyFactory() {};
 
 	virtual void createProperty(vector<Property*> &properties) {
+
+		createChessCard(chanceCards,chestCards);
 
 		ifstream PROPERTY;
 		
@@ -93,7 +98,7 @@ public:
 				PROPERTY>>name;
 				PROPERTY >> ID;
 
-				Property* temp = new Chest(price, rent, mortgage, attribute,name,ID);
+				Property* temp = new Chest(price, rent, mortgage, attribute,name,ID,chestCards);
 				properties.push_back(temp);
 			}
 			else if(attribute == 'B'){
@@ -103,7 +108,7 @@ public:
 				PROPERTY>>name;
 				PROPERTY >> ID;
 
-				Property* temp = new Chance(price, rent, mortgage, attribute,name,ID);
+				Property* temp = new Chance(price, rent, mortgage, attribute,name,ID,chanceCards);
 				properties.push_back(temp);
 			}
 
@@ -149,6 +154,9 @@ virtual void createChessCard(vector<ChessPiece*> &chanceCards, vector<ChessPiece
 private:
 	string filename1;
 	string filename2;
+	vector<ChessPiece*> chanceCards;
+	vector<ChessPiece*> chestCards;
+
 
 };
 

@@ -6,8 +6,8 @@ using namespace std;
 
 class ChessPiece {
     public:
-        ChessPiece();
-        virtual ~ChessPiece();
+
+        virtual ~ChessPiece() = default;
         virtual string getName() = 0;
         virtual int getID() = 0;
     protected:

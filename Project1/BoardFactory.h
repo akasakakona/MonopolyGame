@@ -6,8 +6,7 @@
 #include<vector>
 #include"Property.h"
 #include "ChessPiece.h"
-#include "ChanceCard.h"
-#include "ChestCard.h"
+
 
 using namespace std;
 

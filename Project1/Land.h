@@ -1,8 +1,12 @@
 
 #ifndef __LAND_H
 #define __LAND_H
-#include<iostream>
+
 #include"Property.h"
+#include<string>
+#include<iostream>
+#include "Player.h"
+#include <time.h>
 using namespace std;
 
 class Land : public Property {
@@ -53,6 +57,7 @@ public:
 
 			//check if player is a bot
 			if(player->get_is_bot()){
+
 				if(player->get_money() < this->price){
 					cout << "You do not have enough moeny to purchase this property" << endl;
 				}
@@ -60,13 +65,15 @@ public:
 					int buy = rand() % 2;
 					//buy the property
 					if(buy == 0){
-						cout<<"You have bought " << this->name << endl;
+						cout<<"You have bought " << this->name << " for $"<<this->price << endl;
 						
 						//subtract money from player
 						player->change_money(-this->price);
-						this->owner = owner;
+						this->owner = player;
 
 						player->add_property(this);
+
+						cout<< "You now have $" << player->get_money()<<endl;
 					}
 					else{
 						cout<<"You have choosen not to buy "<< this->name << endl;												
@@ -85,18 +92,21 @@ public:
 					cin >> answer;
 
 					while(answer != "yes" && answer != "no"){
+						cout << "Please enter yes or no" << endl;
 						cin >> answer;
 					}
 
 					//player buys the property
 					if(answer == "yes"){
-						cout<<"You have bought " << this->name << endl;
+						cout<<"You have bought " << this->name << " for $"<<this->price << endl;
 						
 						//subtract money from player
+
 						player->change_money(-this->price);
-						this->owner = owner;
+						this->owner = player;
 
 						player->add_property(this);
+						cout<< "You now have $" << player->get_money()<<endl;						
 					}
 					//player does not buy the property
 					else{
@@ -110,10 +120,9 @@ public:
 		else if(owner != player){
 
 			//current player pays the owner
-
-			int random = rand() % 12 + 1;
-			
 			int a = get_rent(0);
+			
+			cout<<"You have landed on a property that is not own by you, you will have to pay $" << this->rent << endl;
 
 			player->change_money(-a);
 			owner->change_money(a);

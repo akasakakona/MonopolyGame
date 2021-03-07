@@ -1,0 +1,2 @@
+C Advance_to_Go 0
+B Bank_error_Collect_$200 1

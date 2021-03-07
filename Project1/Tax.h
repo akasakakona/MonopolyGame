@@ -1,8 +1,11 @@
 #ifndef __TAX_H
 #define __TAX_H
 
-#include<iostream>
 #include"Property.h"
+#include<string>
+#include<iostream>
+#include "Player.h"
+#include <time.h>
 using namespace std;
 
 class Tax : public Property{
