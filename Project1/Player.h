@@ -30,6 +30,7 @@ private:
 	bool isJailed;
 	int money;
 	int current_positon;
+	int get_out_of_jail_card = 0;
 };
 
 #endif //PLAYER_H
