@@ -48,6 +48,7 @@ class Tax : public Property{
 	virtual void interact(Player* player){
 		cout << "You have been charged with " << this->name << endl;
 		player->change_money(-this->price);
+		cout <<"You now have $"<<player->get_money()<<endl;
 	}
 };
 

@@ -46,6 +46,8 @@ public:
 		return this->purchasable;
 	}
 	virtual void interact(Player* player){
+
+		srand(time(NULL));
 		//player is at go square
 		if(player->get_current_position() == 0){
 			player->change_money(200);
@@ -62,6 +64,9 @@ public:
 				player->set_position(10);
 				player->set_jailed(true);
 			}
+		}
+		else if(player->get_current_position() == 20){
+
 		}
 		else{
 			//if player is in jail
@@ -95,6 +100,9 @@ public:
 					}
 
 				} 
+			}
+			else{
+				cout << "You are just visiting" << endl;
 			}
 		}
 

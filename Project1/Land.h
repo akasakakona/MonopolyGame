@@ -87,7 +87,7 @@ public:
 				}
 				
 				else{
-					cout << "Do you want to buy this property? (yes/no)" << endl;
+					cout << "Do you wish to buy "<< this->name << " for $"<< this->price << "? (yes/no)" << endl;
 					string answer;
 					cin >> answer;
 
@@ -130,6 +130,27 @@ public:
 		}
 		else{
 			cout << "You are the current owner of " << this->name << endl;
+
+			cout << "Do you wish to sell your property? (yes/no)" << endl;
+
+			string answer;
+			cin >> answer;
+
+			while(answer != "yes" && answer != "no"){
+				cout << "Please enter yes or no" << endl;
+				cin >> answer;
+			}
+
+			if(answer == "yes"){
+				cout << "You have just sold " << this->name << endl;
+				player->change_money(this->mortgage);
+				this->owner = nullptr;
+
+				cout << "You now have $" << player->get_money() << endl;
+			}
+			else{
+				cout << "You are still the current owner of " << this->name << endl;
+			}
 		}
 	}
 
