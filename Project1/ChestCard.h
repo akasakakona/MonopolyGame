@@ -1,28 +1,28 @@
-#ifndef __CHANCECARD_H__
-#define __CHANCECARD_H__
+#ifndef __CHESTCARD_H__
+#define __CHESTCARD_H__
 
 using namespace std;
 #include "ChessPiece.h"
 
 
-class ChanceCard : public ChessPiece {
+class ChestCard : public ChessPiece {
     public:
 
-        ChanceCard(string name, int id) {
+        ChestCard(string name, int id) {
             this->name = name;
             this->id = id;
         }
         
-        ~ChanceCard();
+        ~ChestCard();
 
-        //Returns name - in other words description of card
+        //Returns name
         virtual string getName() {
             return this->name;
         }
 
         //Returns ID
         virtual int getID() {
-            return this->id; 
+            return this->id;
         }
 
 
@@ -30,4 +30,4 @@ class ChanceCard : public ChessPiece {
         
 };
 
-#endif //__CHANCECARD_H__
+#endif //__CHESTCARD_H__
