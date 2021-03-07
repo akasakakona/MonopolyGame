@@ -12,6 +12,12 @@ Player::Player() {
 Player::~Player() {}
 
 void Player::set_jailed(bool x) {
+	if (this->get_jail_card() > 0) {
+		cout << "You use a get out of jail card! You're not jailed" << endl;
+		this->change_jail_card(-1);
+		isJailed = false;
+		return;
+	}
 	isJailed = x;
 }
 
@@ -66,4 +72,12 @@ int Player::get_current_position(){
 
 int Player::get_money(){
 	return money;
+}
+
+void Player::change_jail_card(int x) {
+	this->get_out_of_jail_card += x;
+}
+
+int Player::get_jail_card() {
+	return this->get_out_of_jail_card;
 }
