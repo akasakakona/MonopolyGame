@@ -9,8 +9,10 @@ class ChessPiece {
         ChessPiece();
         virtual ~ChessPiece();
         virtual string getName() = 0;
+        virtual int getID() = 0;
     private:
         string name;
+        int id;
 };
 
 #endif //__CHESSPIECE_H__
