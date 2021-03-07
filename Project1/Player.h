@@ -24,12 +24,15 @@ public:
 	void change_position(int spaces);
 	void set_position (int pos);
 	int get_money();
+	void change_jail_card(int x);
+	int get_jail_card();
 
 private:
 	vector<Property*> properties;
 	bool isJailed;
 	int money;
 	int current_positon;
+	int get_out_of_jail_card = 0;
 };
 
 #endif //PLAYER_H
