@@ -1,8 +1,11 @@
 #ifndef __TAX_H
 #define __TAX_H
 
-#include<iostream>
 #include"Property.h"
+#include<string>
+#include<iostream>
+#include "Player.h"
+#include <time.h>
 using namespace std;
 
 class Tax : public Property{
@@ -41,6 +44,11 @@ class Tax : public Property{
     }
 	virtual bool is_purchasable(){
 		return this->purchasable;
+	}
+	virtual void interact(Player* player){
+		cout << "You have been charged with " << this->name << endl;
+		player->change_money(-this->price);
+		cout <<"You now have $"<<player->get_money()<<endl;
 	}
 };
 
