@@ -10,28 +10,22 @@
 #include "Chest.h"
 #include "Tax.h"
 #include "Corner.h"
-#include "ChessPiece.h"
-#include "ChanceCard.h"
-#include "ChestCard.h"
 #include <fstream>
 
 using namespace std;
 
 class PropertyFactory : public BoardFactory {
 public:
-	PropertyFactory(string filename1, string filename2) {
-		this->filename1 = filename1;
-		this->filename2 = filename2;
+	PropertyFactory(string filename) {
+		this->filename = filename;
 	}
 	~PropertyFactory() {};
 
 	virtual void createProperty(vector<Property*> &properties) {
 
-		createChessCard(chanceCards,chestCards);
-
 		ifstream PROPERTY;
 		
-		PROPERTY.open(filename1);
+		PROPERTY.open(filename);
 
 		if (!PROPERTY.is_open()) {
 			cout << "FILE NOT OPEN!" << endl;
@@ -98,7 +92,7 @@ public:
 				PROPERTY>>name;
 				PROPERTY >> ID;
 
-				Property* temp = new Chest(price, rent, mortgage, attribute,name,ID,chestCards);
+				Property* temp = new Chest(price, rent, mortgage, attribute,name,ID);
 				properties.push_back(temp);
 			}
 			else if(attribute == 'B'){
@@ -108,7 +102,7 @@ public:
 				PROPERTY>>name;
 				PROPERTY >> ID;
 
-				Property* temp = new Chance(price, rent, mortgage, attribute,name,ID,chanceCards);
+				Property* temp = new Chance(price, rent, mortgage, attribute,name,ID);
 				properties.push_back(temp);
 			}
 
@@ -117,46 +111,11 @@ public:
 		PROPERTY.close();
 	}
 
-virtual void createChessCard(vector<ChessPiece*> &chanceCards, vector<ChessPiece*> &chestCards){
-		ifstream CARDS;
+	virtual void createChestPiece(vector<Property*>& temp) {
 
-		CARDS.open(this->filename2);
-
-		if (!CARDS.is_open()) {
-			cout << "FILE NOT OPEN" << endl;
-		}
-
-		//C is for Chance. B is for Community Chest Cards
-		char type;
-		//String for description
-		string descript;
-		//ID
-		int cardID;
-
-		while (CARDS >> type) {
-			if (type == 'C') {
-				CARDS >> descript;
-				CARDS >> cardID;
-
-				ChessPiece* temp = new ChanceCard(descript, cardID);
-				chanceCards.push_back(temp);
-			}
-			else if (type == 'B') {
-				CARDS >> descript;
-				CARDS >> cardID;
-
-				ChessPiece* temp = new ChestCard(descript, cardID);
-				chestCards.push_back(temp);
-			}
-		}
-		CARDS.close();
-}
+	}
 private:
-	string filename1;
-	string filename2;
-	vector<ChessPiece*> chanceCards;
-	vector<ChessPiece*> chestCards;
-
+	string filename;
 
 };
 
