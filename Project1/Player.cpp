@@ -10,14 +10,14 @@ Player::Player(string n) {
 	name = n;
 	next = nullptr;
   is_bot = false;
-
+}
   Player::Player(bool is_bot) {
 	isJailed = false;
 	money = 1500;
 	current_positon = 0;
 	this->is_bot = is_bot;
-  next = nullptr;
-  name = "Bot";
+  	next = nullptr;
+  	name = "Bot";
   
 }
 
