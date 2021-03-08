@@ -8,7 +8,7 @@
 using namespace std;
 
 TEST(PLAYERTEST, playerInit){
-    Player* player1 = new Player();
+    Player* player1 = new Player(false);
 
     EXPECT_EQ(player1->get_money(), 1500);
     EXPECT_EQ(player1->get_current_position(), 0);
@@ -16,7 +16,7 @@ TEST(PLAYERTEST, playerInit){
 }
 
 TEST(PLAYERTEST, playerMovement){
-    Player* player1 = new Player();
+    Player* player1 = new Player(false);
 
     EXPECT_EQ(player1->get_current_position(), 0);
     
@@ -31,7 +31,7 @@ TEST(PLAYERTEST, playerMovement){
 }
 
 TEST(PLAYERTEST, playerSetPosition){
-    Player* player1 = new Player();
+    Player* player1 = new Player(false);
 
     player1->set_position(41);
     EXPECT_EQ(player1->get_current_position(), 1);

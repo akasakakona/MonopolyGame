@@ -31,6 +31,7 @@ public:
 	virtual string get_name() = 0;
 	virtual char get_attribute() = 0;
 	virtual bool is_purchasable() = 0;
+	virtual void interact(Player*) = 0;
 
 
 };

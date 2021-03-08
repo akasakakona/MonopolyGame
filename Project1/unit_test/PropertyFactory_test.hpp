@@ -10,7 +10,7 @@
 using namespace std;
 
 TEST(PROPERTYFACTORY, propertyFactoryLand_PRICE){
-    BoardFactory* factory = new PropertyFactory("unit_test/land.txt");
+    BoardFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
     vector<Property* > properties;
     factory->createProperty(properties);
 
@@ -18,21 +18,21 @@ TEST(PROPERTYFACTORY, propertyFactoryLand_PRICE){
 }
 
 TEST(PROPERTYFACTORY, propertyFactoryLand_NAME){
-    BoardFactory* factory = new PropertyFactory("unit_test/land.txt");
+    BoardFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
     vector<Property* > properties;
     factory->createProperty(properties);
 
     EXPECT_EQ(properties.at(0)->get_name(),"KENTUCKY_AVENUE");
 }
 TEST(PROPERTYFACTORY, propertyFactoryUtility_PRICE){
-    BoardFactory* factory = new PropertyFactory("unit_test/land.txt");
+    BoardFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
     vector<Property* > properties;
     factory->createProperty(properties);
 
     EXPECT_EQ(properties.at(2)->get_rent(6),120);
 }
 TEST(PROPERTYFACTORY, propertyFactoryFUllTest){
-    BoardFactory* factory = new PropertyFactory("unit_test/land.txt");
+    BoardFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
     vector<Property* > properties;
     factory->createProperty(properties);
 

@@ -5,6 +5,8 @@
 #include<string>
 #include<vector>
 #include"Property.h"
+#include "ChessPiece.h"
+
 
 using namespace std;
 
@@ -14,7 +16,7 @@ public:
 	virtual ~BoardFactory(){}
 
 	virtual void createProperty(vector<Property*> & )  = 0;
-	virtual void createChestPiece(vector<Property*>&) = 0;
+	virtual void createChessCard(vector<ChessPiece*> &chanceCards, vector<ChessPiece*> &chestCards) = 0;
 };
 
 
