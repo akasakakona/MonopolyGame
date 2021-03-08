@@ -18,8 +18,10 @@ void Game::run(){
     << "(a) Playing alone" << endl
     << "(b) Playing with a friend" << endl
     << "Input: ";
+    cin.clear();
+    cin >> input;
     if(input == "a"){
-        //player2 = new Bot();
+        player2 = new Player(false);
         cout << "Again, welcome to Monopoly, " << player1->get_name() << ". "<< endl;
     }
     else{
@@ -69,8 +71,8 @@ void Game::run(){
         }
         randChoice = rand()%6 + 1;
         cout << currentPlayer->get_name() << " will be travelling forward " << randChoice << " steps!" << endl;
-        // map.at(getLocation(currentPlayer->get_current_position() + randChoice))->interact();
-        currentPlayer->change_position(getLocation(currentPlayer->get_current_position() + randChoice));
+        map.at(getLocation(currentPlayer->get_current_position() + randChoice))->interact();
+        currentPlayer->change_position(getLocation(randChoice));
         Player* winner = wd->evaluateWinner(this);
         if(winner){
             cout << "------------------------------------------------------------------";
