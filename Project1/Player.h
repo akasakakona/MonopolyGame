@@ -25,6 +25,7 @@ public:
 	string get_name()const {return name;};
 	Player* get_next()const {return next;}
 	void set_next(Player* p) {next = p;}
+	unsigned get_property_size(){return properties.size();}
 
 private:
 	vector<Property*> properties;

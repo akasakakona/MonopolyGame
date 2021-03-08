@@ -1,8 +1,9 @@
 #include "Game.h"
-
+#include "WinnerDecider.h"
 #include<iostream>
 #include<cstdlib>
 #include<time.h>
+#include "PropertyFactory.h"
 using namespace std;
 
 void Game::run(){
@@ -11,6 +12,7 @@ void Game::run(){
     string input;
     cout << "Hello! Welcome to Monopoly! First, tell me your name: " << endl << "Input: ";
     getline(cin, name);
+    cin.clear();
     player1 = new Player(name);
     cout << "Thank you, " << player1->get_name() <<". Now, are you playing this game alone or with a friend?" << endl
     << "(a) Playing alone" << endl
@@ -46,16 +48,16 @@ void Game::run(){
     cin.clear();
     cin >> input;
     if(input == "a"){
-        //wc = ;
+        wd = new DecideByMostMoney;
     }
     else if(input == "b"){
-        //wc = ;
+        wd = new DecideByMostProperty;
     }
     else if(input == "c"){
-        //wc = ;
+        wd = new DecideByTenThousand;
     }
     else if(input == "d"){
-        //wc = ;
+        wd = new DecideByLastBroke;
     }
     cout << "You can now start your game. The fate has decided that " << currentPlayer->get_name() << " will go first!" << endl;
     while(isRunning){
@@ -69,6 +71,12 @@ void Game::run(){
         cout << currentPlayer->get_name() << " will be travelling forward " << randChoice << " steps!" << endl;
         // map.at(getLocation(currentPlayer->get_current_position() + randChoice))->interact();
         currentPlayer->change_position(getLocation(currentPlayer->get_current_position() + randChoice));
+        Player* winner = wd->evaluateWinner(this);
+        if(winner){
+            cout << "------------------------------------------------------------------";
+            cout << "Congratuations! " << winner->get_name() << " won the game!" << endl;
+            break;
+        }
     }
 }
 
@@ -80,7 +88,13 @@ int Game::getLocation(unsigned int l){
     return l;
 }
 
+Game::Game(string filename1, string filename2){
+    PropertyFactory pf(filename1, filename2);
+    pf.createProperty(map);
+}
+
 Game::~Game(){
     delete player1;
     delete player2;
+    delete wd;
 }

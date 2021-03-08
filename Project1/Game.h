@@ -1,24 +1,29 @@
-#ifndef GAME_HPP
-#define GAME_HPP
+#ifndef __GAME_H__
+#define __GAME_H__
 
 #include<iostream>
 #include<string>
 #include <vector>
-#include"Player.h"
+#include "Player.h"
 #include "Property.h"
 #include "Game.h"
+#include "WinnerDecider.h"
 // #include "ChanceCard.h"
 // #include "CommunityCard.h"
 
+class WinnerDecider;
 
 using namespace std;
 class Game {
 public:
-    Game();
+    Game(string filename1, string filename2);
     ~Game();
     void run();
     int getLocation(unsigned int);
     bool running() { return isRunning; }
+    unsigned int getTurns() const {return turns;}
+    Player* getCurrentPlayer() const {return currentPlayer;}
+    void initialize();
 
 private:
     vector<Property*> map;
@@ -26,8 +31,8 @@ private:
     Player* player2;
     bool isRunning;
     Player* currentPlayer;
-    // WinnerDecider* wc;
-
+    WinnerDecider* wd;
+    unsigned int turns;
 };
 
 #endif
