@@ -125,7 +125,7 @@ public:
 
 			player->change_money(-a);
 			owner->change_money(a);
-
+			cout<< "You now have $" << player->get_money()<<endl;
 		}
 		else{
 			cout << "You are the current owner of " << this->name << endl;

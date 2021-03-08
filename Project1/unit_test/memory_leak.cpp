@@ -12,6 +12,7 @@ using namespace std;
 #include "../RailRoad.h"
 #include "../PropertyFactory.h"
 #include "../BoardFactory.h"
+#include "../Player.h"
 
 int main(){
 
@@ -23,17 +24,25 @@ int main(){
     delete property2;
     delete property3;
 
-    BoardFactory *factory = new PropertyFactory("land.txt");
+    BoardFactory *factory = new PropertyFactory("../price_rent_mortgage","../cards");
     vector<Property*> properties;
     factory->createProperty(properties);
 
-    //deletes the factory but does not delete the properties
-    delete factory;
+
+    Player *player = new Player(true);
+
+    player->set_position(40);
+    player->add_property(properties.at(1));
+
+    delete player;
 
     //manually delete the properties in the vector
     for(int i = 0; i < properties.size(); ++i){
         delete properties.at(i);
     }
+
+    //deletes the factory but does not delete the properties
+    delete factory;
 
 
     return 0;

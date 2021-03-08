@@ -64,15 +64,17 @@ void Game::run(){
     }
     cout << "You can now start your game. The fate has decided that " << currentPlayer->get_name() << " will go first!" << endl;
     while(isRunning){
+        cout << "=============================================="<<endl;
         cout << "It is currently: " << currentPlayer->get_name() << "\'s turn!" << endl;
         if(currentPlayer->get_jailed()){
             cout << "OOF, seems like you have been jailed... Your turn skipped..." << endl;
             currentPlayer = currentPlayer->get_next();
             continue;
         }
-        randChoice = rand()%6 + 1;
-        cout << currentPlayer->get_name() << " will be travelling forward " << randChoice << " steps!" << endl;
-        currentPlayer->change_position(randChoice);
+        int dice1 = rand()%6 + 1;
+        int dice2 = rand()%6 + 1;
+        cout << currentPlayer->get_name() << " will be travelling forward " << dice1+dice2 << " steps!" << endl;
+        currentPlayer->change_position(dice1+dice2);
         map.at(currentPlayer->get_current_position())->interact(currentPlayer);
         Player* winner = wd->evaluateWinner(this);
         if(winner){
@@ -80,6 +82,7 @@ void Game::run(){
             cout << "Congratuations! " << winner->get_name() << " won the game!" << endl;
             break;
         }
+        winner = nullptr;
     }
 }
 
@@ -92,7 +95,7 @@ int Game::getLocation(unsigned int l){
 }
 
 Game::Game(string filename1, string filename2){
-    BoardFactory *pf = new PropertyFactory(filename1, filename2);
+    pf = new PropertyFactory(filename1, filename2);
     pf->createProperty(map);
 }
 
@@ -104,4 +107,5 @@ Game::~Game(){
     for(unsigned int i = 0; i < map.size(); ++i){
         delete map.at(i);
     }
+    delete pf;
 }
