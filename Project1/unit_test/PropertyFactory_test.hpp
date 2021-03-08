@@ -78,4 +78,18 @@ TEST(PROPERTYFACTORY, createChessCards) {
     EXPECT_EQ(chests.at(0)->getName(), "Bank_error_Collect_$200");
 }
 
+TEST(PROPERTYFACTORY, InitAll) {
+    BoardFactory* factory = new PropertyFactory("price_rent_mortgage","cards");
+    vector<Property* > properties;
+    factory->createProperty(properties);
+
+    Player *player = new Player(false);
+
+    player->set_position(7);
+
+    properties.at(player->get_current_position())->interact(player);
+    
+    EXPECT_EQ(properties.size(), 40);
+}
+
 #endif //__PROPERTY_FACTORY_TEST

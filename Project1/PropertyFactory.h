@@ -34,7 +34,7 @@ public:
 
 	virtual void createProperty(vector<Property*> &properties) {
 
-		createChessCard(chanceCards,chestCards);
+		createChessCard(this->chanceCards,this->chestCards);
 
 		ifstream PROPERTY;
 		
@@ -55,9 +55,9 @@ public:
 		string name;
 		//ID of each property starting from 0, go sqaure has ID 0
 		int ID;
-		
-		  while(PROPERTY >> attribute){
+		while(PROPERTY >> attribute){
 			if (attribute == 'L') {
+
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
@@ -68,6 +68,8 @@ public:
 				properties.push_back(temp);
 			}
 			else if (attribute == 'U') {
+
+
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
@@ -79,6 +81,7 @@ public:
 				properties.push_back(temp);
 			}
 			else if(attribute == 'R'){
+
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
@@ -89,6 +92,7 @@ public:
 				properties.push_back(temp);
 			}
 			else if (attribute == 'A'){
+
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
@@ -99,6 +103,7 @@ public:
 				properties.push_back(temp);
 			}
 			else if(attribute == 'C'){
+
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
@@ -109,6 +114,7 @@ public:
 				properties.push_back(temp);
 			}
 			else if(attribute == 'B'){
+
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
@@ -118,9 +124,19 @@ public:
 				Property* temp = new Chance(price, rent, mortgage, attribute,name,ID,chanceCards);
 				properties.push_back(temp);
 			}
+			else if(attribute == 'T'){
+
+				PROPERTY >> price;
+				PROPERTY >> rent;
+				PROPERTY >> mortgage;
+				PROPERTY>>name;
+				PROPERTY >> ID;
+
+				Property* temp = new Tax(price, rent, mortgage, attribute,name,ID);
+				properties.push_back(temp);
+			}
 
 		}
-
 		PROPERTY.close();
 	}
 

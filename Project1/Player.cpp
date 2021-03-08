@@ -9,7 +9,7 @@ Player::Player(string n) {
 	current_positon = 0;
 	name = n;
 	next = nullptr;
-  is_bot = false;
+    is_bot = false;
 }
   Player::Player(bool is_bot) {
 	isJailed = false;

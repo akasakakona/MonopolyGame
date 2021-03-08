@@ -224,6 +224,10 @@ TEST(PROPERTYTEST, Bot_interaction){
 
     EXPECT_TRUE(player->get_money() == 1500 || player->get_money() == 1000 );
 
+    property->interact(player);
+
+    EXPECT_TRUE(player->get_money() == 1500 || player->get_money() == 1000 );
+
 }
 
 

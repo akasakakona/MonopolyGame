@@ -17,6 +17,7 @@ class ChestCard : public ChessPiece {
 
         //Returns name
         virtual string getName() {
+            cout << "calling getName" << endl;
             return this->name;
         }
 
