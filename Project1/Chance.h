@@ -10,7 +10,7 @@ using namespace std;
 
 class Chance : public Property{
     public:
-	Chance(int price, int rent, int mortgage, char attribute, string name, int ID, vector<ChessPiece*> chanceCards){
+	Chance(int price, int rent, int mortgage, char attribute, string name, int ID, vector<ChessPiece*> &chanceCards){
 		this->price = price;
 		this->rent = rent;
 		this->mortgage = mortgage;
