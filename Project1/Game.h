@@ -3,27 +3,30 @@
 
 #include<iostream>
 #include<string>
+#include <vector>
 #include"Player.h"
-#include "Board.h"
+#include "Property.h"
 #include "Game.h"
+// #include "ChanceCard.h"
+// #include "CommunityCard.h"
 
 
 using namespace std;
-class Board;
 class Game {
 public:
     Game();
     ~Game();
-
+    void run();
+    int getLocation(unsigned int);
     bool running() { return isRunning; }
 
 private:
-
+    vector<Property*> map;
     Player* player1;
     Player* player2;
-    Board* board;
     bool isRunning;
-
+    Player* currentPlayer;
+    // WinnerDecider* wc;
 
 };
 

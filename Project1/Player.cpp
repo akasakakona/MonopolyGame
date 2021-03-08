@@ -3,9 +3,12 @@
 #include"Property.h"
 using namespace std;
 
-Player::Player() {
+Player::Player(string n) {
 	isJailed = false;
-	money = 200;
+	money = 1500;
+	current_positon = 0;
+	name = n;
+	next = nullptr;
 }
 
 Player::~Player() {}
@@ -27,13 +30,42 @@ void Player::add_property(Property* property){
 	properties.push_back(property);
 
 }
+
 void Player::remove_property(Property* property){
 	int index = 0;
 	for (unsigned int i = 0; i < properties.size(); ++i) {
-		if (property == properties.at(i)) {
+		if (property->get_name() == properties.at(i)->get_name()) {
+			properties.at(i)->set_owner(nullptr);
 			index = i;
 		}
 	}
 	properties.erase(properties.begin() + index);
 
+}
+
+void Player::set_position(int pos){
+	if(pos > 40){
+		while(pos > 40){
+			pos -= 40;
+		}
+	}
+	current_positon = pos;
+}
+
+void Player::change_position(int spaces){
+	if((current_positon + spaces) > 39){
+		current_positon = (current_positon + spaces) - 40;
+	}
+	else{
+		current_positon += spaces;
+	}
+}
+
+int Player::get_current_position(){
+
+	return current_positon;
+}
+
+int Player::get_money(){
+	return money;
 }
