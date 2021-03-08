@@ -69,5 +69,13 @@ TEST(PROPERTYFACTORY, propertyFactoryFUllTest){
 
 }
 
+TEST(PROPERTYFACTORY, createChessCards) {
+    BoardFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
+    vector<ChessPiece*> chances;
+    vector<ChessPiece*> chests;
+    factory->createChessCard(chances, chests);
+    EXPECT_EQ(chances.at(0)->getName(), "Advance_to_Go");
+    EXPECT_EQ(chests.at(0)->getName(), "Bank_error_Collect_$200");
+}
 
 #endif //__PROPERTY_FACTORY_TEST
