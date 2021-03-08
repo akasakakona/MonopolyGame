@@ -1,3 +1,7 @@
+//to run this code
+//g++ memory_leak.cpp
+//valgrind --leak-check=full --track-origins=yes ./a.out
+
 #include<iostream>
 
 using namespace std;
@@ -6,6 +10,8 @@ using namespace std;
 #include "../Land.h"
 #include "../Utility.h"
 #include "../RailRoad.h"
+#include "../PropertyFactory.h"
+#include "../BoardFactory.h"
 
 int main(){
 
@@ -16,6 +22,18 @@ int main(){
     delete property1;
     delete property2;
     delete property3;
+
+    BoardFactory *factory = new PropertyFactory("land.txt");
+    vector<Property*> properties;
+    factory->createProperty(properties);
+
+    //deletes the factory but does not delete the properties
+    delete factory;
+
+    //manually delete the properties in the vector
+    for(int i = 0; i < properties.size(); ++i){
+        delete properties.at(i);
+    }
 
 
     return 0;

@@ -11,6 +11,7 @@ class Player{
 
 public:
 	Player(string n);
+	Player(bool);
 	~Player();
 
 	void set_jailed(bool);
@@ -26,14 +27,19 @@ public:
 	Player* get_next()const {return next;}
 	void set_next(Player* p) {next = p;}
 	unsigned get_property_size(){return properties.size();}
+	void change_jail_card(int x);
+	int get_jail_card();
+	bool get_is_bot();
 
 private:
 	vector<Property*> properties;
 	bool isJailed;
 	int money;
-	int current_positon;
 	string name;
 	Player* next;
+	bool is_bot;
+	int current_positon;
+	int get_out_of_jail_card = 0;
 };
 
 #endif //PLAYER_H
