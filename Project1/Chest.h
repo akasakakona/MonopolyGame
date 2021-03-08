@@ -8,7 +8,7 @@ using namespace std;
 
 class Chest : public Property{
     public:
-	Chest(int price, int rent, int mortgage, char attribute, string name, int ID, vector<ChessPiece*> chestCards){
+	Chest(int price, int rent, int mortgage, char attribute, string name, int ID, vector<ChessPiece*> &chestCards){
 		this->price = price;
 		this->rent = rent;
 		this->mortgage = mortgage;

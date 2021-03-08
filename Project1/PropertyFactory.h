@@ -23,7 +23,14 @@ public:
 		this->filename1 = filename1;
 		this->filename2 = filename2;
 	}
-	~PropertyFactory() {};
+	~PropertyFactory() {
+		for(unsigned int i = 0; i < chanceCards.size(); ++i){
+			delete chanceCards.at(i);
+		}
+		for(unsigned int i = 0; i < chestCards.size(); ++i){
+			delete chestCards.at(i);
+		}
+	};
 
 	virtual void createProperty(vector<Property*> &properties) {
 
