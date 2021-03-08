@@ -10,7 +10,7 @@ class Property;
 class Player{
 
 public:
-	Player(string n);
+	Player(bool,string);
 	Player(bool);
 	~Player();
 

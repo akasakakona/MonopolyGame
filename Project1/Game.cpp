@@ -4,7 +4,6 @@
 #include<cstdlib>
 #include<time.h>
 #include "PropertyFactory.h"
-#include "BoardFactory.h"
 using namespace std;
 
 void Game::run(){
@@ -14,7 +13,7 @@ void Game::run(){
     cout << "Hello! Welcome to Monopoly! First, tell me your name: " << endl << "Input: ";
     getline(cin, name);
     cin.clear();
-    player1 = new Player(name);
+    player1 = new Player(true, name);
     cout << "Thank you, " << player1->get_name() <<". Now, are you playing this game alone or with a friend?" << endl
     << "(a) Playing alone" << endl
     << "(b) Playing with a friend" << endl
@@ -22,13 +21,13 @@ void Game::run(){
     cin.clear();
     cin >> input;
     if(input == "a"){
-        player2 = new Player(true);
+        player2 = new Player(false, "Bot");
         cout << "Again, welcome to Monopoly, " << player1->get_name() << ". "<< endl;
     }
     else{
         cout << "What is the name of the second player?" << endl << "Input: ";
         getline(cin, name);
-        player2 = new Player(name);
+        player2 = new Player(true, name);
         cout << "Welcome to Monopoly, " << player1->get_name() << " and " << player2->get_name() << ". " << endl;
     }
     srand(time(NULL));
@@ -68,21 +67,27 @@ void Game::run(){
         cout << "It is currently: " << currentPlayer->get_name() << "\'s turn!" << endl;
         if(currentPlayer->get_jailed()){
             cout << "OOF, seems like you have been jailed... Your turn skipped..." << endl;
+            map.at(currentPlayer->get_current_position())->interact(currentPlayer);
             currentPlayer = currentPlayer->get_next();
             continue;
         }
+
         int dice1 = rand()%6 + 1;
         int dice2 = rand()%6 + 1;
         cout << currentPlayer->get_name() << " will be travelling forward " << dice1+dice2 << " steps!" << endl;
         currentPlayer->change_position(dice1+dice2);
         map.at(currentPlayer->get_current_position())->interact(currentPlayer);
+
         Player* winner = wd->evaluateWinner(this);
         if(winner){
-            cout << "------------------------------------------------------------------";
+            cout << "------------------------------------------------------------------" << endl;
             cout << "Congratuations! " << winner->get_name() << " won the game!" << endl;
             break;
         }
-        winner = nullptr;
+
+        currentPlayer = currentPlayer->get_next();
+        cout << "------------------------------------------------------------------" << endl;
+
     }
 }
 
@@ -103,8 +108,7 @@ Game::~Game(){
     delete player1;
     delete player2;
     delete wd;
-
-    for(unsigned int i = 0; i < map.size(); ++i){
+    for(unsigned i = 0; i < map.size(); i++){
         delete map.at(i);
     }
     delete pf;
