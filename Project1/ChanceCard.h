@@ -13,11 +13,9 @@ class ChanceCard : public ChessPiece {
             this->id = id;
         }
         
-        ~ChanceCard(){}
 
         //Returns name - in other words description of card
         virtual string getName() {
-            cout << "calling getName" << endl;
             return this->name;
         }
 

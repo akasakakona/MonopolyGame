@@ -4,6 +4,7 @@
 #include<cstdlib>
 #include<time.h>
 #include "PropertyFactory.h"
+#include "BoardFactory.h"
 using namespace std;
 
 void Game::run(){
@@ -91,8 +92,8 @@ int Game::getLocation(unsigned int l){
 }
 
 Game::Game(string filename1, string filename2){
-    PropertyFactory pf(filename1, filename2);
-    pf.createProperty(map);
+    BoardFactory *pf = new PropertyFactory(filename1, filename2);
+    pf->createProperty(map);
 }
 
 Game::~Game(){
