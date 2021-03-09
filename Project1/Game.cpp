@@ -111,5 +111,4 @@ Game::~Game(){
     for(unsigned i = 0; i < map.size(); i++){
         delete map.at(i);
     }
-    delete pf;
 }
