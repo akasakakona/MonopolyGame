@@ -13,7 +13,7 @@ void Game::run(){
     cout << "Hello! Welcome to Monopoly! First, tell me your name: " << endl << "Input: ";
     getline(cin, name);
     cin.clear();
-    player1 = new Player(true, name);
+    player1 = new Player(false, name);
     cout << "Thank you, " << player1->get_name() <<". Now, are you playing this game alone or with a friend?" << endl
     << "(a) Playing alone" << endl
     << "(b) Playing with a friend" << endl
@@ -21,13 +21,13 @@ void Game::run(){
     cin.clear();
     cin >> input;
     if(input == "a"){
-        player2 = new Player(false, "Bot");
+        player2 = new Player(true, "Bot");
         cout << "Again, welcome to Monopoly, " << player1->get_name() << ". "<< endl;
     }
     else{
         cout << "What is the name of the second player?" << endl << "Input: ";
         getline(cin, name);
-        player2 = new Player(true, name);
+        player2 = new Player(false, name);
         cout << "Welcome to Monopoly, " << player1->get_name() << " and " << player2->get_name() << ". " << endl;
     }
     srand(time(NULL));
