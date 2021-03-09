@@ -29,7 +29,7 @@ TEST(CHANCEPROPERTY, createChances){
     chanceCards.push_back(test1);
 
     Chance* test2 = new Chance(1,1,1,'L',"ChanceTest",1,chanceCards);
-    Player* test3 = new Player(true);
+    Player* test3 = new Player(true,"a");
     test2->interact(test3);
     EXPECT_EQ(test3->get_current_position(), 24);
 }
@@ -40,7 +40,7 @@ TEST(CHESTPROPERTY, createChests){
     chestCards.push_back(test1);
 
     Chest* test2 = new Chest(1,1,1,'L',"ChanceTest",1,chestCards);
-    Player* test4 = new Player(true);
+    Player* test4 = new Player(true,"a");
     //cout << test4->get_money() << endl;
     test2->interact(test4);
     EXPECT_EQ(test4->get_money(), 1700);

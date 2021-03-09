@@ -77,6 +77,7 @@ void Game::run(){
         cout << currentPlayer->get_name() << " will be travelling forward " << dice1+dice2 << " steps!" << endl;
         currentPlayer->change_position(dice1+dice2);
         map.at(currentPlayer->get_current_position())->interact(currentPlayer);
+        turns++;
 
         Player* winner = wd->evaluateWinner(this);
         if(winner){
@@ -86,7 +87,7 @@ void Game::run(){
         }
 
         currentPlayer = currentPlayer->get_next();
-        cout << "------------------------------------------------------------------" << endl;
+        cout << "==============================================" << endl;
 
     }
 }

@@ -17,7 +17,7 @@ TEST(CHANCE_TEST, chanceInteract) {
 
     Property *chance = new Chance(0,0,0,'C',"CHANCE",5,chances);
 
-    Player* player = new Player("test");
+    Player* player = new Player(false,"test");
 
     chance->interact(player);
 

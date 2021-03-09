@@ -83,7 +83,7 @@ TEST(PROPERTYFACTORY, InitAll) {
     vector<Property* > properties;
     factory->createProperty(properties);
 
-    Player *player = new Player(false);
+    Player *player = new Player(false,"a");
 
     player->set_position(7);
 
