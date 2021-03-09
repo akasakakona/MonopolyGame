@@ -26,7 +26,8 @@ void Game::run(){
     }
     else{
         cout << "What is the name of the second player?" << endl << "Input: ";
-        getline(cin, name);
+        cin.clear();
+        cin >> name;
         player2 = new Player(false, name);
         cout << "Welcome to Monopoly, " << player1->get_name() << " and " << player2->get_name() << ". " << endl;
     }
@@ -46,7 +47,8 @@ void Game::run(){
     << "(a) Most money wins" << endl
     << "(b) Most property wins" << endl
     << "(c) First to save up $10000 wins" << endl
-    << "(d) The last to not broke" << endl;
+    << "(d) The last to not broke" << endl
+    << "Input: ";
     cin >> input;
     if(input == "a"){
         wd = new DecideByMostMoney;
@@ -62,7 +64,7 @@ void Game::run(){
     }
     cout << "You can now start your game. The fate has decided that " << currentPlayer->get_name() << " will go first!" << endl;
     while(isRunning){
-        cout << "=============================================="<<endl;
+        cout << "==============================================" <<endl;
         cout << "It is currently: " << currentPlayer->get_name() << "\'s turn!" << endl;
         if(currentPlayer->get_jailed()){
             cout << "OOF, seems like you have been jailed... Your turn skipped..." << endl;
@@ -79,14 +81,17 @@ void Game::run(){
         turns++;
         Player* winner = wd->evaluateWinner(this);
         if(winner){
-            cout << "------------------------------------------------------------------" << endl;
+            cout << "==============================================" <<endl;
             cout << "Congratuations! " << winner->get_name() << " won the game!" << endl;
             break;
         }
 
         currentPlayer = currentPlayer->get_next();
+<<<<<<< HEAD
         cout << "==============================================" << endl;
 
+=======
+>>>>>>> fe3393c3f2d2e30cd30b1c3feed040d1ac754cfb
     }
 }
 

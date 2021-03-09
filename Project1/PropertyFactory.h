@@ -2,7 +2,6 @@
 #ifndef __PROPERTY_FACTORY_H
 #define __PROPERTY_FACTORY_H
 
-#include "BoardFactory.h"
 #include "Land.h"
 #include "Utility.h"
 #include "RailRoad.h"
@@ -17,7 +16,7 @@
 
 using namespace std;
 
-class PropertyFactory : public BoardFactory {
+class PropertyFactory{
 public:
 	PropertyFactory(string filename1, string filename2) {
 		this->filename1 = filename1;
@@ -32,7 +31,7 @@ public:
 		}
 	};
 
-	virtual void createProperty(vector<Property*> &properties) {
+	void createProperty(vector<Property*> &properties) {
 
 		createChessCard(this->chanceCards,this->chestCards);
 
@@ -140,7 +139,7 @@ public:
 		PROPERTY.close();
 	}
 
-virtual void createChessCard(vector<ChessPiece*> &chanceCards, vector<ChessPiece*> &chestCards){
+void createChessCard(vector<ChessPiece*> &chanceCards, vector<ChessPiece*> &chestCards){
 		ifstream CARDS;
 
 		CARDS.open(this->filename2);
