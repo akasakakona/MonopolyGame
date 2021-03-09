@@ -11,9 +11,9 @@ void Game::run(){
     string name;
     string input;
     cout << "Hello! Welcome to Monopoly! First, tell me your name: " << endl << "Input: ";
-    getline(cin, name);
+    cin >> name;
     cin.clear();
-    player1 = new Player(true, name);
+    player1 = new Player(false, name);
     cout << "Thank you, " << player1->get_name() <<". Now, are you playing this game alone or with a friend?" << endl
     << "(a) Playing alone" << endl
     << "(b) Playing with a friend" << endl
@@ -21,12 +21,12 @@ void Game::run(){
     cin.clear();
     cin >> input;
     if(input == "a"){
-        player2 = new Player(false, "Bot");
+        player2 = new Player(true, "Bot");
         cout << "Again, welcome to Monopoly, " << player1->get_name() << ". "<< endl;
     }
     else{
         cout << "What is the name of the second player?" << endl << "Input: ";
-        getline(cin, name);
+        cin>>name;
         player2 = new Player(true, name);
         cout << "Welcome to Monopoly, " << player1->get_name() << " and " << player2->get_name() << ". " << endl;
     }
@@ -47,7 +47,6 @@ void Game::run(){
     << "(b) Most property wins" << endl
     << "(c) First to save up $10000 wins" << endl
     << "(d) The last to not broke" << endl;
-    cin.clear();
     cin >> input;
     if(input == "a"){
         wd = new DecideByMostMoney;
@@ -94,14 +93,15 @@ int Game::getLocation(unsigned int l){
 }
 
 Game::Game(string filename1, string filename2){
-    PropertyFactory pf(filename1, filename2);
-    pf.createProperty(map);
+    pf = new PropertyFactory(filename1, filename2);
+    pf->createProperty(map);
 }
 
 Game::~Game(){
     delete player1;
     delete player2;
     delete wd;
+    delete pf;
     for(unsigned i = 0; i < map.size(); i++){
         delete map.at(i);
     }
