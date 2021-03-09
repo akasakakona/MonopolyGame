@@ -50,23 +50,29 @@ public:
 		srand(time(NULL));
 		//player is at go square
 		if(player->get_current_position() == 0){
+			cout<<"You have arrived at Go"<<endl;
 			player->change_money(200);
 		}
 		//player is at go to jail square
 		else if(player->get_current_position() == 30){
 
+			cout<<"You have arrived at go to jail square"<< endl;
+
 			//check if player has a get out of jail card
 			if(player->get_jail_card() > 0){
+				cout<<"Get out of jail card used"<<endl;
 				player->change_jail_card(-1);
 			}
 			//player goes to jail
 			else{
+
+				cout <<"You have been sent to jail" << endl;
 				player->set_position(10);
 				player->set_jailed(true);
 			}
 		}
 		else if(player->get_current_position() == 20){
-
+			cout<<"You have arrived at Free Parking"<<endl;
 		}
 		else{
 			//if player is in jail
@@ -80,23 +86,29 @@ public:
 					player->set_jailed(false);
 				}
 				else{
-					cout << "You are still in jail since you did not roll a double" << endl;
-					cout << "Do you wish to pay $50 to get out of jail? (yes/no)" << endl;
+					if(player->get_is_bot() == false){
+						cout << "You are still in jail since you did not roll a double" << endl;
+						cout << "Do you wish to pay $50 to get out of jail? (yes/no)" << endl;
 
-					string answer;
-					cin >> answer;
-
-					while(answer != "yes" && answer != "no"){
+						string answer;
 						cin >> answer;
-					}
 
-					if(answer == "yes"){
-						cout<<"You are free, and is no longer in jail!" << endl;
-						player->change_money(-50);
-						player->set_jailed(false);
-					}
-					else{
-						cout<<"You are still in jail, please wait till next turn"<<endl;
+						while(answer != "yes" && answer != "no"){
+							cin >> answer;
+						}
+
+						if(answer == "yes" && player->get_money() >50){
+							cout<<"You are free, and is no longer in jail!" << endl;
+							player->change_money(-50);
+							player->set_jailed(false);
+						}
+						else if (answer == "no"){
+							cout<<"You are still in jail, please wait till next turn"<<endl;
+						}
+						else{
+							cout<<"You do not have enough money for bail!"<<endl;
+							cout<<"You are still in jail, please wait till next turn"<<endl;
+						}
 					}
 
 				} 
