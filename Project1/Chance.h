@@ -51,7 +51,8 @@ class Chance : public Property{
 		srand(time(NULL));
 		int randomInt = rand() % this->chanceCards.size();
 		//Print out the card that was given
-		cout << "Your card says... " << chanceCards.at(randomInt)->getName() << endl;
+		cout << "You got a chance card!" << endl;
+		cout << "Your chance card says... " << chanceCards.at(randomInt)->getName() << endl;
 
 		if (chanceCards.at(randomInt)->getID() == 0) {
 			currPlayer->set_position(0);
