@@ -85,10 +85,8 @@ void Game::run(){
             cout << "Congratuations! " << winner->get_name() << " won the game!" << endl;
             break;
         }
-
         currentPlayer = currentPlayer->get_next();
         cout << "==============================================" << endl;
-
     }
 }
 
