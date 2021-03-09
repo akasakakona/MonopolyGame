@@ -66,7 +66,7 @@ public:
 			}
 		}
 		else if(player->get_current_position() == 20){
-
+			cout<<"You have arrived at Free Parking"<<endl;
 		}
 		else{
 			//if player is in jail
