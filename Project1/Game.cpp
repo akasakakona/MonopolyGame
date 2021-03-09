@@ -87,11 +87,8 @@ void Game::run(){
         }
 
         currentPlayer = currentPlayer->get_next();
-<<<<<<< HEAD
         cout << "==============================================" << endl;
 
-=======
->>>>>>> fe3393c3f2d2e30cd30b1c3feed040d1ac754cfb
     }
 }
 
