@@ -11,7 +11,7 @@ void Game::run(){
     string name;
     string input;
     cout << "Hello! Welcome to Monopoly! First, tell me your name: " << endl << "Input: ";
-    getline(cin, name);
+    cin >> name;
     cin.clear();
     player1 = new Player(false, name);
     cout << "Thank you, " << player1->get_name() <<". Now, are you playing this game alone or with a friend?" << endl
@@ -47,7 +47,6 @@ void Game::run(){
     << "(b) Most property wins" << endl
     << "(c) First to save up $10000 wins" << endl
     << "(d) The last to not broke" << endl;
-    cin.clear();
     cin >> input;
     if(input == "a"){
         wd = new DecideByMostMoney;
@@ -78,7 +77,6 @@ void Game::run(){
         currentPlayer->change_position(dice1+dice2);
         map.at(currentPlayer->get_current_position())->interact(currentPlayer);
         turns++;
-
         Player* winner = wd->evaluateWinner(this);
         if(winner){
             cout << "------------------------------------------------------------------" << endl;
@@ -109,8 +107,8 @@ Game::~Game(){
     delete player1;
     delete player2;
     delete wd;
+    delete pf;
     for(unsigned i = 0; i < map.size(); i++){
         delete map.at(i);
     }
-    delete pf;
 }
