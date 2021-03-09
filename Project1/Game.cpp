@@ -101,6 +101,7 @@ int Game::getLocation(unsigned int l){
 Game::Game(string filename1, string filename2){
     pf = new PropertyFactory(filename1, filename2);
     pf->createProperty(map);
+    turns = 0;
 }
 
 Game::~Game(){
