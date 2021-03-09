@@ -12,7 +12,11 @@ Player::Player(bool is_bot, string n) {
     this->is_bot = is_bot;
 }
 
-Player::~Player() {}
+Player::~Player() {
+	for(unsigned int i = 0; i < properties.size(); ++i){
+		properties.at(i) = nullptr;
+	}
+}
 
 void Player::set_jailed(bool x) {
 	if (this->get_jail_card() > 0) {

@@ -102,7 +102,7 @@ public:
 				} 
 			}
 			else{
-				cout << "You are just visiting" << endl;
+				cout << "You are just visiting jail" << endl;
 			}
 		}
 
