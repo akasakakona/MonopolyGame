@@ -47,6 +47,9 @@ class Chance : public Property{
 		return this->purchasable;
 	}
 	virtual void interact(Player* currPlayer) {
+		if (currPlayer->get_jailed() == true) {
+			return;
+		}
 		//Generate random int
 		srand(time(NULL));
 		int randomInt = rand() % this->chanceCards.size();
@@ -163,6 +166,7 @@ class Chance : public Property{
 			//Win lotto
 			currPlayer->change_money(100);
 		}
+		return;
 	}
 
 	private:
