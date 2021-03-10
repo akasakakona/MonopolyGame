@@ -10,7 +10,7 @@ using namespace std;
 
 class Chance : public Property{
     public:
-	Chance(int price, int rent, int mortgage, char attribute, string name, int ID, vector<ChessPiece*> chanceCards){
+	Chance(int price, int rent, int mortgage, char attribute, string name, int ID, vector<ChessPiece*> &chanceCards){
 		this->price = price;
 		this->rent = rent;
 		this->mortgage = mortgage;
@@ -47,11 +47,15 @@ class Chance : public Property{
 		return this->purchasable;
 	}
 	virtual void interact(Player* currPlayer) {
+		if (currPlayer->get_jailed() == true) {
+			return;
+		}
 		//Generate random int
 		srand(time(NULL));
 		int randomInt = rand() % this->chanceCards.size();
 		//Print out the card that was given
-		cout << "Your card says... " << chanceCards.at(randomInt)->getName() << endl;
+		cout << "You got a chance card!" << endl;
+		cout << "Your chance card says... " << chanceCards.at(randomInt)->getName() << endl;
 
 		if (chanceCards.at(randomInt)->getID() == 0) {
 			currPlayer->set_position(0);
@@ -126,6 +130,7 @@ class Chance : public Property{
 			//Go to jail
 			cout << "You've been jailed!" << endl;
 			currPlayer->set_jailed(true);
+			currPlayer->set_position(10);
 		}
 		else if (chanceCards.at(randomInt)->getID() == 9) {
 			//Pay poor tax
@@ -161,6 +166,7 @@ class Chance : public Property{
 			//Win lotto
 			currPlayer->change_money(100);
 		}
+		return;
 	}
 
 	private:

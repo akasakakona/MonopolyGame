@@ -2,7 +2,6 @@
 #ifndef __PROPERTY_FACTORY_H
 #define __PROPERTY_FACTORY_H
 
-#include "BoardFactory.h"
 #include "Land.h"
 #include "Utility.h"
 #include "RailRoad.h"
@@ -17,17 +16,24 @@
 
 using namespace std;
 
-class PropertyFactory : public BoardFactory {
+class PropertyFactory{
 public:
 	PropertyFactory(string filename1, string filename2) {
 		this->filename1 = filename1;
 		this->filename2 = filename2;
 	}
-	~PropertyFactory() {};
+	~PropertyFactory() {
+		for(unsigned int i = 0; i < chanceCards.size(); ++i){
+			delete chanceCards.at(i);
+		}
+		for(unsigned int i = 0; i < chestCards.size(); ++i){
+			delete chestCards.at(i);
+		}
+	};
 
-	virtual void createProperty(vector<Property*> &properties) {
+	void createProperty(vector<Property*> &properties) {
 
-		createChessCard(chanceCards,chestCards);
+		createChessCard(this->chanceCards,this->chestCards);
 
 		ifstream PROPERTY;
 		
@@ -48,9 +54,9 @@ public:
 		string name;
 		//ID of each property starting from 0, go sqaure has ID 0
 		int ID;
-		
-		  while(PROPERTY >> attribute){
+		while(PROPERTY >> attribute){
 			if (attribute == 'L') {
+
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
@@ -61,6 +67,8 @@ public:
 				properties.push_back(temp);
 			}
 			else if (attribute == 'U') {
+
+
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
@@ -72,6 +80,7 @@ public:
 				properties.push_back(temp);
 			}
 			else if(attribute == 'R'){
+
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
@@ -82,6 +91,7 @@ public:
 				properties.push_back(temp);
 			}
 			else if (attribute == 'A'){
+
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
@@ -92,6 +102,7 @@ public:
 				properties.push_back(temp);
 			}
 			else if(attribute == 'C'){
+
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
@@ -102,6 +113,7 @@ public:
 				properties.push_back(temp);
 			}
 			else if(attribute == 'B'){
+
 				PROPERTY >> price;
 				PROPERTY >> rent;
 				PROPERTY >> mortgage;
@@ -111,13 +123,23 @@ public:
 				Property* temp = new Chance(price, rent, mortgage, attribute,name,ID,chanceCards);
 				properties.push_back(temp);
 			}
+			else if(attribute == 'T'){
+
+				PROPERTY >> price;
+				PROPERTY >> rent;
+				PROPERTY >> mortgage;
+				PROPERTY>>name;
+				PROPERTY >> ID;
+
+				Property* temp = new Tax(price, rent, mortgage, attribute,name,ID);
+				properties.push_back(temp);
+			}
 
 		}
-
 		PROPERTY.close();
 	}
 
-virtual void createChessCard(vector<ChessPiece*> &chanceCards, vector<ChessPiece*> &chestCards){
+void createChessCard(vector<ChessPiece*> &chanceCards, vector<ChessPiece*> &chestCards){
 		ifstream CARDS;
 
 		CARDS.open(this->filename2);

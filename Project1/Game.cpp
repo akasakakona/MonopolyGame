@@ -11,9 +11,9 @@ void Game::run(){
     string name;
     string input;
     cout << "Hello! Welcome to Monopoly! First, tell me your name: " << endl << "Input: ";
-    getline(cin, name);
+    cin >> name;
     cin.clear();
-    player1 = new Player(name);
+    player1 = new Player(false, name);
     cout << "Thank you, " << player1->get_name() <<". Now, are you playing this game alone or with a friend?" << endl
     << "(a) Playing alone" << endl
     << "(b) Playing with a friend" << endl
@@ -21,13 +21,14 @@ void Game::run(){
     cin.clear();
     cin >> input;
     if(input == "a"){
-        player2 = new Player(false);
+        player2 = new Player(true, "Bot");
         cout << "Again, welcome to Monopoly, " << player1->get_name() << ". "<< endl;
     }
     else{
         cout << "What is the name of the second player?" << endl << "Input: ";
-        getline(cin, name);
-        player2 = new Player(name);
+        cin.clear();
+        cin >> name;
+        player2 = new Player(false, name);
         cout << "Welcome to Monopoly, " << player1->get_name() << " and " << player2->get_name() << ". " << endl;
     }
     srand(time(NULL));
@@ -43,11 +44,11 @@ void Game::run(){
         player1->set_next(player2);
     }
     cout << "Before we start, how would you like to win this game? You can choose from a list of rules below:" << endl
-    << "(a) Most money wins" << endl
-    << "(b) Most property wins" << endl
+    << "(a) Most money at the end of 50th turn wins" << endl
+    << "(b) Most property at the end of 50th turn wins" << endl
     << "(c) First to save up $10000 wins" << endl
-    << "(d) The last to not broke" << endl;
-    cin.clear();
+    << "(d) The last to not broke wins" << endl
+    << "Input: ";
     cin >> input;
     if(input == "a"){
         wd = new DecideByMostMoney;
@@ -63,22 +64,31 @@ void Game::run(){
     }
     cout << "You can now start your game. The fate has decided that " << currentPlayer->get_name() << " will go first!" << endl;
     while(isRunning){
+        cout << "==============================================" <<endl;
         cout << "It is currently: " << currentPlayer->get_name() << "\'s turn!" << endl;
         if(currentPlayer->get_jailed()){
             cout << "OOF, seems like you have been jailed... Your turn skipped..." << endl;
+            map.at(currentPlayer->get_current_position())->interact(currentPlayer);
             currentPlayer = currentPlayer->get_next();
+            cout << "==============================================" <<endl;
             continue;
         }
-        randChoice = rand()%6 + 1;
-        cout << currentPlayer->get_name() << " will be travelling forward " << randChoice << " steps!" << endl;
-        map.at(getLocation(currentPlayer->get_current_position() + randChoice))->interact();
-        currentPlayer->change_position(getLocation(randChoice));
+
+        int dice1 = rand()%6 + 1;
+        int dice2 = rand()%6 + 1;
+        cout << currentPlayer->get_name() << " will be travelling forward " << dice1+dice2 << " steps!" << endl;
+        currentPlayer->change_position(dice1+dice2);
+        cout << "You have arrived at "<< map.at(currentPlayer->get_current_position())->get_name() <<endl;
+        map.at(currentPlayer->get_current_position())->interact(currentPlayer);
+        turns++;
         Player* winner = wd->evaluateWinner(this);
         if(winner){
-            cout << "------------------------------------------------------------------";
+            cout << "==============================================" <<endl;
             cout << "Congratuations! " << winner->get_name() << " won the game!" << endl;
             break;
         }
+        currentPlayer = currentPlayer->get_next();
+        cout << "==============================================" << endl;
     }
 }
 
@@ -91,12 +101,17 @@ int Game::getLocation(unsigned int l){
 }
 
 Game::Game(string filename1, string filename2){
-    PropertyFactory pf(filename1, filename2);
-    pf.createProperty(map);
+    pf = new PropertyFactory(filename1, filename2);
+    pf->createProperty(map);
+    turns = 0;
 }
 
 Game::~Game(){
     delete player1;
     delete player2;
     delete wd;
+    delete pf;
+    for(unsigned i = 0; i < map.size(); i++){
+        delete map.at(i);
+    }
 }

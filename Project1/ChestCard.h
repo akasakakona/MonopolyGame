@@ -13,8 +13,6 @@ class ChestCard : public ChessPiece {
             this->id = id;
         }
         
-        ~ChestCard(){}
-
         //Returns name
         virtual string getName() {
             return this->name;

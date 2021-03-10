@@ -13,7 +13,6 @@ class ChanceCard : public ChessPiece {
             this->id = id;
         }
         
-        ~ChanceCard(){}
 
         //Returns name - in other words description of card
         virtual string getName() {

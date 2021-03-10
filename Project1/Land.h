@@ -126,30 +126,34 @@ public:
 
 			player->change_money(-a);
 			owner->change_money(a);
+			cout<< "You now have $" << player->get_money()<<endl;
 
 		}
 		else{
 			cout << "You are the current owner of " << this->name << endl;
 
-			cout << "Do you wish to sell your property? (yes/no)" << endl;
+			if(player->get_is_bot() == false){
 
-			string answer;
-			cin >> answer;
+				cout << "Do you wish to sell your property? (yes/no)" << endl;
 
-			while(answer != "yes" && answer != "no"){
-				cout << "Please enter yes or no" << endl;
+				string answer;
 				cin >> answer;
-			}
 
-			if(answer == "yes"){
-				cout << "You have just sold " << this->name << endl;
-				player->change_money(this->mortgage);
-				this->owner = nullptr;
+				while(answer != "yes" && answer != "no"){
+					cout << "Please enter yes or no" << endl;
+					cin >> answer;
+				}
 
-				cout << "You now have $" << player->get_money() << endl;
-			}
-			else{
-				cout << "You are still the current owner of " << this->name << endl;
+				if(answer == "yes"){
+					cout << "You have just sold " << this->name << endl;
+					player->change_money(this->mortgage);
+					this->owner = nullptr;
+
+					cout << "You now have $" << player->get_money() << endl;
+				}
+				else{
+					cout << "You are still the current owner of " << this->name << endl;
+				}
 			}
 		}
 	}

@@ -9,7 +9,9 @@
 #include "../Tax.h"
 #include "../Chest.h"
 #include "../ChessPiece.h"
+#include "../Chance.h"
 #include "../Player.h"
+#include "../Corner.h"
 
 #include<vector>
 
@@ -21,31 +23,37 @@ using namespace std;
 TEST(PROPERTYTEST, LandPrice){
     Property* property = new Land(5,5,5,'L',"LAND_TEST",0);
     EXPECT_EQ(property->get_price(), 5);
+    delete property;
 }
 
 TEST(PROPERTYTEST, UtilityPrice){
     Property* property = new Utility(5,5,5,'U',"UTILITY_TEST",0);
     EXPECT_EQ(property->get_price(), 5);
+    delete property;
 }
 
 TEST(PROPERTYTEST, RailRoadPrice){
     Property* property = new RailRoad(5,5,5,'R',"RAILROAD_TEST",0);
     EXPECT_EQ(property->get_price(), 5);
+    delete property;
 }
 
 TEST(PROPERTYTEST, LandName){
     Property* property = new Land(5,5,5,'L',"LAND_TEST",0);
     EXPECT_EQ(property->get_name(), "LAND_TEST");
+    delete property;
 }
 
 TEST(PROPERTYTEST, UtilityName){
     Property* property = new Utility(5,5,5,'U',"UTILITY_TEST",0);
     EXPECT_EQ(property->get_name(), "UTILITY_TEST");
+    delete property;
 }
 
 TEST(PROPERTYTEST, RailRoadName){
     Property* property = new RailRoad(5,5,5,'R',"RAILROAD_TEST",0);
     EXPECT_EQ(property->get_name(), "RAILROAD_TEST");
+    delete property;
 }
 TEST(PROPERTYTEST, TaxTest){
     Property* tax = new Tax(200,0,0,'T',"TAX",0);
@@ -53,31 +61,34 @@ TEST(PROPERTYTEST, TaxTest){
     EXPECT_EQ(tax->get_owner(), nullptr);
     EXPECT_EQ(tax->is_purchasable(), false);
     EXPECT_EQ(tax->get_price(), 200);
+    delete tax;
 }
 TEST(PROPERTYTEST, ChanceTest){
 
     vector<ChessPiece*> test;
 
-    Property* chance = new Chance(200,0,0,'B',"Chance",0,test);
+    Property* chance = new Chance(0,0,0,'B',"Chance",0,test);
     EXPECT_EQ(chance->get_name(), "Chance");
     EXPECT_EQ(chance->get_owner(), nullptr);
     EXPECT_EQ(chance->is_purchasable(), false);
-    EXPECT_EQ(chance->get_price(), 200);
+    EXPECT_EQ(chance->get_price(), 0);
+    delete chance;
 }
 TEST(PROPERTYTEST, ChestTest){
 
     vector<ChessPiece*> test;
 
-    Property* chest = new Chance(0,0,0,'C',"Chest",0,test);
+    Property* chest = new Chest(0,0,0,'C',"Chest",0,test);
     EXPECT_EQ(chest->get_name(), "Chest");
     EXPECT_EQ(chest->get_owner(), nullptr);
     EXPECT_EQ(chest->is_purchasable(), false);
     EXPECT_EQ(chest->get_price(), 0);
+    delete chest;
 }
 
 // TEST(PROPERTYTEST, InteractLand){
 
-//     Player *player1 = new Player(false);
+//     Player *player1 = new Player(false,"a");
 
 //     Property* property = new Land(500,100,400,'L',"LAND_TEST",0);
 
@@ -91,7 +102,7 @@ TEST(PROPERTYTEST, ChestTest){
     
 //     EXPECT_EQ(player1->get_money(), 1000);
     
-//     Player *player2 = new Player(false);
+//     Player *player2 = new Player(false,"a");
 //     //player2 lands on property
 //     property->interact(player2);
 
@@ -112,7 +123,7 @@ TEST(PROPERTYTEST, ChestTest){
 
 // TEST(PROPERTYTEST, InteractUtility){
 
-//     Player *player1 = new Player(false);
+//     Player *player1 = new Player(false,"a");
 
 //     Property* property = new Utility(500,100,400,'U',"Utility_TEST",0);
 
@@ -126,7 +137,7 @@ TEST(PROPERTYTEST, ChestTest){
     
 //     EXPECT_EQ(player1->get_money(), 1000);
     
-    // Player *player2 = new Player(false);
+    // Player *player2 = new Player(false,"a");
     // //player2 lands on property
     // property->interact(player2);
 
@@ -147,7 +158,7 @@ TEST(PROPERTYTEST, ChestTest){
 
 // TEST(PROPERTYTEST, InteractRailRoad){
 
-//     Player *player1 = new Player(false);
+//     Player *player1 = new Player(false,"a");
 
 //     Property* property = new RailRoad(500,100,400,'L',"RailRoad_TEST",0);
 
@@ -161,7 +172,7 @@ TEST(PROPERTYTEST, ChestTest){
     
 //     EXPECT_EQ(player1->get_money(), 1000);
     
-//     Player *player2 = new Player(false);
+//     Player *player2 = new Player(false,"a");
 //     //player2 lands on property
 //     property->interact(player2);
 
@@ -182,7 +193,7 @@ TEST(PROPERTYTEST, ChestTest){
 
 TEST(PROPERTYTEST, InteractCorner){
 
-    Player *player1 = new Player(false);
+    Player *player1 = new Player(false,"a");
 
     Property* property1 = new Corner(200,0,0,'A',"GO_SQUARE",0);
     Property* property2 = new Corner(0,0,0,'A',"JUST_VISITING",10);
@@ -212,11 +223,15 @@ TEST(PROPERTYTEST, InteractCorner){
     player1->set_position(10);
     property2->interact(player1);
     EXPECT_TRUE(player1->get_jailed() == true || player1->get_jailed() == false);
-
+    delete player1;
+    delete property1;
+    delete property2;
+    delete property3;
+    delete property4;
 }
 
 TEST(PROPERTYTEST, Bot_interaction){
-    Player* player = new Player(true);
+    Player* player = new Player(true,"a");
 
     Property* property = new Land(500,100,400,'L',"LAND_TEST",0);
 
@@ -224,12 +239,18 @@ TEST(PROPERTYTEST, Bot_interaction){
 
     EXPECT_TRUE(player->get_money() == 1500 || player->get_money() == 1000 );
 
+    property->interact(player);
+
+    EXPECT_TRUE(player->get_money() == 1500 || player->get_money() == 1000 );
+    delete player;
+    delete property;
+
 }
 
 
 TEST(PROPERTYTEST, Interact_Tax){
-    Player* player = new Player(true);
-    Player* player1 = new Player(false);
+    Player* player = new Player(true,"a");
+    Player* player1 = new Player(false,"a");
 
     Property* property = new Tax(500,100,400,'T',"TAX_TEST",0);
 
@@ -240,7 +261,9 @@ TEST(PROPERTYTEST, Interact_Tax){
     property->interact(player1);
 
     EXPECT_EQ(player1->get_money(),1000);
-
+    delete player;
+    delete player1;
+    delete property;
 }
 
 

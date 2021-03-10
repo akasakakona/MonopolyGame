@@ -7,7 +7,7 @@
 #include "Player.h"
 #include "Property.h"
 #include "Game.h"
-#include "WinnerDecider.h"
+#include "PropertyFactory.h"
 // #include "ChanceCard.h"
 // #include "CommunityCard.h"
 
@@ -33,6 +33,7 @@ private:
     Player* currentPlayer;
     WinnerDecider* wd;
     unsigned int turns;
+    PropertyFactory* pf;
 };
 
 #endif
