@@ -66,4 +66,6 @@ Board class will take care of all the interactions between Properties object and
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
  > Our project was tested/validated using Google Tests and unit testing. We unit tested each class, which can be seen in the "unit_tests" folder. Our unit tests were aimed at making sure the code would behave as expected. For example, a chance card. The unit tests for chance and chest cards made sure that a chance/chest card object could be made and would work as intended in game. In other words, the unit test made sure that a player could land, draw, and the card would perform the action as intended. These kind of unit tests were done for all classes, including factories. We used cmake to also run these tests. Furthermore, we created a debug branch on GitHub. Using this branch we ran the game ourselves on our individual machines and looked for bugs. We all played the games ourselves to find any bugs, and we were able to elimnate many bugs by doing so. Since the game has many random possibilites, this was the best way to test/validate our game. 
- 
+## Recent Changes
+> 3/5/21 - 3/7/21 Implement chance cards, community chest cards, and interact functions. Property functions also received interact functions. Game logic added.
+> 3/8/21 - 3/9/21 Most recent changes before our project due date was debugging once our final.  
