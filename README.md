@@ -60,7 +60,7 @@ Our project was tested/validated using Google Tests and unit testing. We unit te
 ## Recent Changes
 2/26/21 -3/1/21 Implemented property factory to create the different property present on the board.
 
-3/1/21 - 3/4/21 Implemented the chance piece, chest piece, tax piece and updated the property factory accordingly.
+3/1/21 - 3/4/21 Implemented the chance piece, chest piece, tax piece and updated the property factory accordingly also created the player class.
 
  3/5/21 - 3/7/21 Implement chance cards, community chest cards, and interact functions. Property functions also received interact functions. Game logic added.
 
