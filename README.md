@@ -49,9 +49,10 @@ Game class will take care of all the interactions between Player object and Prop
  ## Installation/Usage
  Instructions on installing and running your application
  Step 1: Install all files on Github
- Step 2: Using a C++ compiler, compile using "g++ main.cpp Player.cpp WinnerDecider.cpp Game.cpp -o monopoly"
- Step 3: Now run the program. "./monopoly.exe price_rent_mortgage cards" or "./monopoly price_rent_mortgage cards" depending on your pc. 
+ Step 2: Using a C++ compiler, compile using `g++ main.cpp Player.cpp WinnerDecider.cpp Game.cpp -o monopoly`
+ Step 3: Now run the program. `./monopoly.exe price_rent_mortgage cards` or `./monopoly price_rent_mortgage cards` depending on your pc. 
  Step 4: The game is text based. Follow the prompts on the screen to play.
+ **NOTE:** This game is customizable, just edit the `price_rent_mortgage` and `cards` file and you will be able to change the name/price of properties and message of cards!
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
 
