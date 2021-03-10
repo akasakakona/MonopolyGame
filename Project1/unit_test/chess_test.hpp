@@ -21,6 +21,15 @@ TEST(CHANCE_TEST, chanceInteract) {
     chance->interact(player);
 
     EXPECT_EQ(player->get_money(),1700);
+    delete factory;
+    delete chance;
+    delete player;
+    for(unsigned i = 0; i < chances.size(); i++){
+        delete chances.at(i);
+    }
+    for(unsigned i = 0; i < chests.size(); i++){
+        delete chests.at(i);
+    }
 
 }
 

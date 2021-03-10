@@ -13,6 +13,7 @@ TEST(PLAYERTEST, playerInit){
     EXPECT_EQ(player1->get_money(), 1500);
     EXPECT_EQ(player1->get_current_position(), 0);
     EXPECT_EQ(player1->get_jailed(), false);
+    delete player1;
 }
 
 TEST(PLAYERTEST, playerMovement){
@@ -28,6 +29,7 @@ TEST(PLAYERTEST, playerMovement){
 
     player1->change_position(6);
     EXPECT_EQ(player1->get_current_position(), 5);
+    delete player1;
 }
 
 TEST(PLAYERTEST, playerSetPosition){
@@ -38,6 +40,7 @@ TEST(PLAYERTEST, playerSetPosition){
 
     player1->set_position(100);
     EXPECT_EQ(player1->get_current_position(), 20);
+    delete player1;
     
 }
 #endif

@@ -23,31 +23,37 @@ using namespace std;
 TEST(PROPERTYTEST, LandPrice){
     Property* property = new Land(5,5,5,'L',"LAND_TEST",0);
     EXPECT_EQ(property->get_price(), 5);
+    delete property;
 }
 
 TEST(PROPERTYTEST, UtilityPrice){
     Property* property = new Utility(5,5,5,'U',"UTILITY_TEST",0);
     EXPECT_EQ(property->get_price(), 5);
+    delete property;
 }
 
 TEST(PROPERTYTEST, RailRoadPrice){
     Property* property = new RailRoad(5,5,5,'R',"RAILROAD_TEST",0);
     EXPECT_EQ(property->get_price(), 5);
+    delete property;
 }
 
 TEST(PROPERTYTEST, LandName){
     Property* property = new Land(5,5,5,'L',"LAND_TEST",0);
     EXPECT_EQ(property->get_name(), "LAND_TEST");
+    delete property;
 }
 
 TEST(PROPERTYTEST, UtilityName){
     Property* property = new Utility(5,5,5,'U',"UTILITY_TEST",0);
     EXPECT_EQ(property->get_name(), "UTILITY_TEST");
+    delete property;
 }
 
 TEST(PROPERTYTEST, RailRoadName){
     Property* property = new RailRoad(5,5,5,'R',"RAILROAD_TEST",0);
     EXPECT_EQ(property->get_name(), "RAILROAD_TEST");
+    delete property;
 }
 TEST(PROPERTYTEST, TaxTest){
     Property* tax = new Tax(200,0,0,'T',"TAX",0);
@@ -55,6 +61,7 @@ TEST(PROPERTYTEST, TaxTest){
     EXPECT_EQ(tax->get_owner(), nullptr);
     EXPECT_EQ(tax->is_purchasable(), false);
     EXPECT_EQ(tax->get_price(), 200);
+    delete tax;
 }
 TEST(PROPERTYTEST, ChanceTest){
 
@@ -65,6 +72,7 @@ TEST(PROPERTYTEST, ChanceTest){
     EXPECT_EQ(chance->get_owner(), nullptr);
     EXPECT_EQ(chance->is_purchasable(), false);
     EXPECT_EQ(chance->get_price(), 0);
+    delete chance;
 }
 TEST(PROPERTYTEST, ChestTest){
 
@@ -75,6 +83,7 @@ TEST(PROPERTYTEST, ChestTest){
     EXPECT_EQ(chest->get_owner(), nullptr);
     EXPECT_EQ(chest->is_purchasable(), false);
     EXPECT_EQ(chest->get_price(), 0);
+    delete chest;
 }
 
 // TEST(PROPERTYTEST, InteractLand){
@@ -214,7 +223,11 @@ TEST(PROPERTYTEST, InteractCorner){
     player1->set_position(10);
     property2->interact(player1);
     EXPECT_TRUE(player1->get_jailed() == true || player1->get_jailed() == false);
-
+    delete player1;
+    delete property1;
+    delete property2;
+    delete property3;
+    delete property4;
 }
 
 TEST(PROPERTYTEST, Bot_interaction){
@@ -229,6 +242,8 @@ TEST(PROPERTYTEST, Bot_interaction){
     property->interact(player);
 
     EXPECT_TRUE(player->get_money() == 1500 || player->get_money() == 1000 );
+    delete player;
+    delete property;
 
 }
 
@@ -246,7 +261,9 @@ TEST(PROPERTYTEST, Interact_Tax){
     property->interact(player1);
 
     EXPECT_EQ(player1->get_money(),1000);
-
+    delete player;
+    delete player1;
+    delete property;
 }
 
 

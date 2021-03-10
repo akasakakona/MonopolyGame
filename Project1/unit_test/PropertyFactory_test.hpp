@@ -14,6 +14,10 @@ TEST(PROPERTYFACTORY, propertyFactoryLand_PRICE){
     factory->createProperty(properties);
 
     EXPECT_EQ(properties.at(0)->get_price(),220 );
+    delete factory;
+    for(unsigned i = 0; i < properties.size(); i++){
+        delete properties.at(i);
+    }
 }
 
 TEST(PROPERTYFACTORY, propertyFactoryLand_NAME){
@@ -22,6 +26,10 @@ TEST(PROPERTYFACTORY, propertyFactoryLand_NAME){
     factory->createProperty(properties);
 
     EXPECT_EQ(properties.at(0)->get_name(),"KENTUCKY_AVENUE");
+    delete factory;
+    for(unsigned i = 0; i < properties.size(); i++){
+        delete properties.at(i);
+    }
 }
 TEST(PROPERTYFACTORY, propertyFactoryUtility_PRICE){
     PropertyFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
@@ -29,6 +37,10 @@ TEST(PROPERTYFACTORY, propertyFactoryUtility_PRICE){
     factory->createProperty(properties);
 
     EXPECT_EQ(properties.at(2)->get_rent(6),120);
+    delete factory;
+    for(unsigned i = 0; i < properties.size(); i++){
+        delete properties.at(i);
+    }
 }
 TEST(PROPERTYFACTORY, propertyFactoryFUllTest){
     PropertyFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
@@ -65,6 +77,10 @@ TEST(PROPERTYFACTORY, propertyFactoryFUllTest){
     EXPECT_EQ(properties.at(5)->get_attribute(),'B');
     EXPECT_EQ(properties.at(5)->get_name(),"CHANCE");
     EXPECT_EQ(properties.at(5)->is_purchasable(),false);
+    delete factory;
+    for(unsigned i = 0; i < properties.size(); i++){
+        delete properties.at(i);
+    }
 
 }
 
@@ -75,6 +91,13 @@ TEST(PROPERTYFACTORY, createChessCards) {
     factory->createChessCard(chances, chests);
     EXPECT_EQ(chances.at(0)->getName(), "Advance_to_Go");
     EXPECT_EQ(chests.at(0)->getName(), "Bank_error_Collect_$200");
+    delete factory;
+    for(unsigned i = 0; i < chances.size(); i++){
+        delete chances.at(i);
+    }
+    for(unsigned i = 0; i < chests.size(); i++){
+        delete chests.at(i);
+    }
 }
 
 TEST(PROPERTYFACTORY, InitAll) {
@@ -89,6 +112,11 @@ TEST(PROPERTYFACTORY, InitAll) {
     properties.at(player->get_current_position())->interact(player);
     
     EXPECT_EQ(properties.size(), 40);
+    delete factory;
+    for(unsigned i = 0; i < properties.size(); i++){
+        delete properties.at(i);
+    }
+    delete player;
 }
 
 #endif //__PROPERTY_FACTORY_TEST

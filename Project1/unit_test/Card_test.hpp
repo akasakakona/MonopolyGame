@@ -15,12 +15,14 @@ TEST(CHANCECARD, createChance){
     ChanceCard* test = new ChanceCard("This is a test", 1);
     EXPECT_EQ(test->getName(), "This is a test");
     EXPECT_EQ(test->getID(), 1);
+    delete test;
 }
 
 TEST(CHESTCARD, createChest){
     ChestCard* test = new ChestCard("This is a test", 1);
     EXPECT_EQ(test->getName(), "This is a test");
     EXPECT_EQ(test->getID(), 1);
+    delete test;
 }
 
 TEST(CHANCEPROPERTY, createChances){
@@ -32,6 +34,9 @@ TEST(CHANCEPROPERTY, createChances){
     Player* test3 = new Player(true,"a");
     test2->interact(test3);
     EXPECT_EQ(test3->get_current_position(), 24);
+    delete test1;
+    delete test2;
+    delete test3;
 }
 
 TEST(CHESTPROPERTY, createChests){
@@ -44,6 +49,9 @@ TEST(CHESTPROPERTY, createChests){
     //cout << test4->get_money() << endl;
     test2->interact(test4);
     EXPECT_EQ(test4->get_money(), 1700);
+    delete test1;
+    delete test2;
+    delete test4;
 }
 
 #endif
