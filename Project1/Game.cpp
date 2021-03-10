@@ -78,6 +78,7 @@ void Game::run(){
         int dice2 = rand()%6 + 1;
         cout << currentPlayer->get_name() << " will be travelling forward " << dice1+dice2 << " steps!" << endl;
         currentPlayer->change_position(dice1+dice2);
+        cout << "You have arrived at "<< map.at(currentPlayer->get_current_position())->get_name() <<endl;
         map.at(currentPlayer->get_current_position())->interact(currentPlayer);
         turns++;
         Player* winner = wd->evaluateWinner(this);

@@ -45,11 +45,15 @@ class Chest : public Property{
 		return this->purchasable;
 	}
 	virtual void interact(Player* currPlayer) {
+		if (currPlayer->get_jailed() == true) {
+			return;
+		}
 		//Generate random int
 		srand(time(NULL));
 		int randomInt = rand() % this->chestCards.size();
 		//Print out the card that was given
-		cout << "Your card says... " << chestCards.at(randomInt)->getName() << endl;
+		cout << "You got a community chest card!" << endl;
+		cout << "Your community chest card says... " << chestCards.at(randomInt)->getName() << endl;
 
 		if (chestCards.at(randomInt)->getID() == 0) {
 			currPlayer->set_position(0);
@@ -77,6 +81,7 @@ class Chest : public Property{
 			//Go to jail
 			cout << "You've been jailed!" << endl;
 			currPlayer->set_jailed(true);
+			currPlayer->set_position(10);
 		}
 		else if (chestCards.at(randomInt)->getID() == 6) {
 			//Opera
@@ -118,6 +123,7 @@ class Chest : public Property{
 			//Inherit 100
 			currPlayer->change_money(100);
 		}
+		return;
 	}
 
 	private: 
