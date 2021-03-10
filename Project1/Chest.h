@@ -77,6 +77,7 @@ class Chest : public Property{
 			//Go to jail
 			cout << "You've been jailed!" << endl;
 			currPlayer->set_jailed(true);
+			currPlayer->set_position(10);
 		}
 		else if (chestCards.at(randomInt)->getID() == 6) {
 			//Opera
