@@ -44,10 +44,10 @@ void Game::run(){
         player1->set_next(player2);
     }
     cout << "Before we start, how would you like to win this game? You can choose from a list of rules below:" << endl
-    << "(a) Most money wins" << endl
-    << "(b) Most property wins" << endl
+    << "(a) Most money at the end of 50th turn wins" << endl
+    << "(b) Most property at the end of 50th turn wins" << endl
     << "(c) First to save up $10000 wins" << endl
-    << "(d) The last to not broke" << endl
+    << "(d) The last to not broke wins" << endl
     << "Input: ";
     cin >> input;
     if(input == "a"){
@@ -70,6 +70,7 @@ void Game::run(){
             cout << "OOF, seems like you have been jailed... Your turn skipped..." << endl;
             map.at(currentPlayer->get_current_position())->interact(currentPlayer);
             currentPlayer = currentPlayer->get_next();
+            cout << "==============================================" <<endl;
             continue;
         }
 
@@ -85,13 +86,8 @@ void Game::run(){
             cout << "Congratuations! " << winner->get_name() << " won the game!" << endl;
             break;
         }
-
         currentPlayer = currentPlayer->get_next();
-<<<<<<< HEAD
         cout << "==============================================" << endl;
-
-=======
->>>>>>> fe3393c3f2d2e30cd30b1c3feed040d1ac754cfb
     }
 }
 

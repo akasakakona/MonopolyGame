@@ -127,6 +127,7 @@ class Chance : public Property{
 			//Go to jail
 			cout << "You've been jailed!" << endl;
 			currPlayer->set_jailed(true);
+			currPlayer->set_position(10);
 		}
 		else if (chanceCards.at(randomInt)->getID() == 9) {
 			//Pay poor tax

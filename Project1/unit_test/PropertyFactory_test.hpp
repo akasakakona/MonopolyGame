@@ -4,13 +4,12 @@
 #include "gtest/gtest.h"
 #include <vector>
 #include "../PropertyFactory.h"
-#include "../BoardFactory.h"
 #include "../Property.h"
 
 using namespace std;
 
 TEST(PROPERTYFACTORY, propertyFactoryLand_PRICE){
-    BoardFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
+    PropertyFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
     vector<Property* > properties;
     factory->createProperty(properties);
 
@@ -18,21 +17,21 @@ TEST(PROPERTYFACTORY, propertyFactoryLand_PRICE){
 }
 
 TEST(PROPERTYFACTORY, propertyFactoryLand_NAME){
-    BoardFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
+    PropertyFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
     vector<Property* > properties;
     factory->createProperty(properties);
 
     EXPECT_EQ(properties.at(0)->get_name(),"KENTUCKY_AVENUE");
 }
 TEST(PROPERTYFACTORY, propertyFactoryUtility_PRICE){
-    BoardFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
+    PropertyFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
     vector<Property* > properties;
     factory->createProperty(properties);
 
     EXPECT_EQ(properties.at(2)->get_rent(6),120);
 }
 TEST(PROPERTYFACTORY, propertyFactoryFUllTest){
-    BoardFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
+    PropertyFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
     vector<Property* > properties;
     factory->createProperty(properties);
 
@@ -70,7 +69,7 @@ TEST(PROPERTYFACTORY, propertyFactoryFUllTest){
 }
 
 TEST(PROPERTYFACTORY, createChessCards) {
-    BoardFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
+    PropertyFactory* factory = new PropertyFactory("unit_test/land.txt","unit_test/card_test.txt");
     vector<ChessPiece*> chances;
     vector<ChessPiece*> chests;
     factory->createChessCard(chances, chests);
@@ -79,7 +78,7 @@ TEST(PROPERTYFACTORY, createChessCards) {
 }
 
 TEST(PROPERTYFACTORY, InitAll) {
-    BoardFactory* factory = new PropertyFactory("price_rent_mortgage","cards");
+    PropertyFactory* factory = new PropertyFactory("price_rent_mortgage","cards");
     vector<Property* > properties;
     factory->createProperty(properties);
 
