@@ -23,7 +23,6 @@ public:
     bool running() { return isRunning; }
     unsigned int getTurns() const {return turns;}
     Player* getCurrentPlayer() const {return currentPlayer;}
-    void initialize();
 
 private:
     vector<Property*> map;
