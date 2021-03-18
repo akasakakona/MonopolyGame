@@ -25,7 +25,7 @@ We are choosing the factory design pattern because, for example, Monopoly has ma
 We are choosing the strategy design pattern because throughout the game, we need to give players the freedom to choose their own winning rules and give us developers the ability to easily add more winning rules to expand our game in the future. 
 A strategy class is needed in order to achieve the goal mentioned above. If we do not use this design pattern, we will have lose the ability for players to choose their winning rule and it will be harder to add more winning rules in the future, which will make our code a mess. This design pattern will make our code cleaner. 
 
-<img src="https://raw.githubusercontent.com/cs100/final-project-rle026-kzhen027-tlian020/master/Project1/Images/Final%20OMT%20Diagram.jpg?token=AKPWCG3CQHKXK6GBRG4YQU3AKGTVS">
+<img src="https://github.com/akasakakona/MonopolyGame/blob/master/Project1/Images/Final%20OMT%20Diagram.jpg">
 
 The WinnerDecider class is an abstract base class. Classes like DecideByMostMoney, DecideByMostProperty, DecideByTenThousand, DecideByLastBroke all inherit from the WinnerDecider base class. Every class will implement a virtual function called evaluateWinner() that will take a Game object as an argument and decide who is the winner of the game.
  
